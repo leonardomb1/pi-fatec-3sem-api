@@ -5,7 +5,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "pessoas")
-public class Pessoa {
+public class PessoaModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,12 +44,32 @@ public class Pessoa {
     @Temporal(TemporalType.TIMESTAMP)
     private Date dtAlteracao;
 
-    public Integer getIdPessoa() {
-        return idPessoa;
+    public PessoaModel() {
     }
 
-    public void setIdPessoa(Integer idPessoa) {
-        this.idPessoa = idPessoa;
+    public PessoaModel(String nomePessoa, String nomeSocial, String cgpPessoa, String rgPessoa, Date dataNascimento, String endereco, String nomeUsuario, String senhaUsuario) {
+        setNomePessoa(nomePessoa);
+        setNomeSocial(nomeSocial);
+        setCgpPessoa(cgpPessoa);
+        setRgPessoa(rgPessoa);
+        setDataNascimento(dataNascimento);
+        setEndereco(endereco);
+        setNomeUsuario(nomeUsuario);
+        setSenhaUsuario(senhaUsuario);
+    }
+
+    public PessoaModel(String nomePessoa, String cgpPessoa, String rgPessoa, Date dataNascimento, String endereco, String nomeUsuario, String senhaUsuario) {
+        setNomePessoa(nomePessoa);
+        setCgpPessoa(cgpPessoa);
+        setRgPessoa(rgPessoa);
+        setDataNascimento(dataNascimento);
+        setEndereco(endereco);
+        setNomeUsuario(nomeUsuario);
+        setSenhaUsuario(senhaUsuario);
+    }
+
+    public Integer getIdPessoa() {
+        return idPessoa;
     }
 
     public String getNomePessoa() {
