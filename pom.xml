@@ -111,7 +111,7 @@
 			        <changeLogFile>src/main/resources/db/changelog/db.changelog-master.yaml</changeLogFile>
 			        <url>jdbc:sqlserver://localhost:1433/SRP</url>
 			        <username>sa</username>
-			        <password>sua_senha</password>
+			        <password></password>
 			        <driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</driver>
 			      </configuration>
 			</plugin>
