@@ -1,7 +1,13 @@
 databaseChangeLog:
   - changeSet:
       id: 1
-      author: yourname
+      author: SeuNome 
+      preConditions:
+        onFail: MARK_RAN
+        onError: HALT
+        not:
+          tableExists:
+            tableName: pessoas
       changes:
         - createTable:
             tableName: pessoas
@@ -68,7 +74,13 @@ databaseChangeLog:
 
   - changeSet:
       id: 2
-      author: yourname
+      author: SeuNome
+      preConditions:
+        onFail: MARK_RAN
+        onError: HALT
+        not:
+          tableExists:
+            tableName: cargos
       changes:
         - createTable:
             tableName: cargos
@@ -105,7 +117,13 @@ databaseChangeLog:
 
   - changeSet:
       id: 3
-      author: yourname
+      author: SeuNome
+      preConditions:
+        onFail: MARK_RAN
+        onError: HALT
+        not:
+          tableExists:
+            tableName: empresas
       changes:
         - createTable:
             tableName: empresas
@@ -161,7 +179,13 @@ databaseChangeLog:
 
   - changeSet:
       id: 4
-      author: yourname
+      author: SeuNome
+      preConditions:
+        onFail: MARK_RAN
+        onError: HALT
+        not:
+          tableExists:
+            tableName: cursos
       changes:
         - createTable:
             tableName: cursos
@@ -202,7 +226,13 @@ databaseChangeLog:
 
   - changeSet:
       id: 5
-      author: yourname
+      author: SeuNome
+      preConditions:
+        onFail: MARK_RAN
+        onError: HALT
+        not:
+          tableExists:
+            tableName: trilhas
       changes:
         - createTable:
             tableName: trilhas
@@ -238,7 +268,13 @@ databaseChangeLog:
 
   - changeSet:
       id: 6
-      author: yourname
+      author: SeuNome
+      preConditions:
+        onFail: MARK_RAN
+        onError: HALT
+        not:
+          tableExists:
+            tableName: funcionarios
       changes:
         - createTable:
             tableName: funcionarios
@@ -291,7 +327,13 @@ databaseChangeLog:
 
   - changeSet:
       id: 7
-      author: yourname
+      author: SeuNome
+      preConditions:
+        onFail: MARK_RAN
+        onError: HALT
+        not:
+          tableExists:
+            tableName: clientes
       changes:
         - createTable:
             tableName: clientes
@@ -341,7 +383,13 @@ databaseChangeLog:
 
   - changeSet:
       id: 8
-      author: yourname
+      author: SeuNome
+      preConditions:
+        onFail: MARK_RAN
+        onError: HALT
+        not:
+          tableExists:
+            tableName: turmas
       changes:
         - createTable:
             tableName: turmas
@@ -389,7 +437,13 @@ databaseChangeLog:
 
   - changeSet:
       id: 9
-      author: yourname
+      author: SeuNome
+      preConditions:
+        onFail: MARK_RAN
+        onError: HALT
+        not:
+          tableExists:
+            tableName: classificacao
       changes:
         - createTable:
             tableName: classificacao
@@ -420,7 +474,13 @@ databaseChangeLog:
 
   - changeSet:
       id: 10
-      author: yourname
+      author: SeuNome
+      preConditions:
+        onFail: MARK_RAN
+        onError: HALT
+        not:
+          tableExists:
+            tableName: classificacao_cursos
       changes:
         - createTable:
             tableName: classificacao_cursos
@@ -457,7 +517,13 @@ databaseChangeLog:
 
   - changeSet:
       id: 11
-      author: yourname
+      author: SeuNome
+      preConditions:
+        onFail: MARK_RAN
+        onError: HALT
+        not:
+          tableExists:
+            tableName: cargo_funcionarios
       changes:
         - createTable:
             tableName: cargo_funcionarios
@@ -499,7 +565,13 @@ databaseChangeLog:
 
   - changeSet:
       id: 12
-      author: yourname
+      author: SeuNome
+      preConditions:
+        onFail: MARK_RAN
+        onError: HALT
+        not:
+          tableExists:
+            tableName: funcionario_turmas
       changes:
         - createTable:
             tableName: funcionario_turmas
@@ -541,7 +613,13 @@ databaseChangeLog:
 
   - changeSet:
       id: 13
-      author: yourname
+      author: SeuNome
+      preConditions:
+        onFail: MARK_RAN
+        onError: HALT
+        not:
+          tableExists:
+            tableName: cliente_turmas
       changes:
         - createTable:
             tableName: cliente_turmas
@@ -583,7 +661,13 @@ databaseChangeLog:
 
   - changeSet:
       id: 14
-      author: yourname
+      author: SeuNome
+      preConditions:
+        onFail: MARK_RAN
+        onError: HALT
+        not:
+          tableExists:
+            tableName: pcds
       changes:
         - createTable:
             tableName: pcds
@@ -620,7 +704,13 @@ databaseChangeLog:
 
   - changeSet:
       id: 15
-      author: yourname
+      author: SeuNome
+      preConditions:
+        onFail: MARK_RAN
+        onError: HALT
+        not:
+          tableExists:
+            tableName: pessoa_pcds
       changes:
         - createTable:
             tableName: pessoa_pcds
@@ -662,7 +752,13 @@ databaseChangeLog:
 
   - changeSet:
       id: 16
-      author: yourname
+      author: SeuNome
+      preConditions:
+        onFail: MARK_RAN
+        onError: HALT
+        not:
+          tableExists:
+            tableName: cursos_trilha
       changes:
         - createTable:
             tableName: cursos_trilha

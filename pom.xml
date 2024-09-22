@@ -109,7 +109,7 @@
 			      <version>4.7.1</version>
 			      <configuration>
 			        <changeLogFile>src/main/resources/db/changelog/db.changelog-master.yaml</changeLogFile>
-			        <url>jdbc:sqlserver://localhost:1433/SRP</url>
+			        <url>jdbc:sqlserver://localhost:1433;databaseName=SRP;encrypt=true;trustServerCertificate=true</url>
 			        <username>sa</username>
 			        <password></password>
 			        <driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</driver>
