@@ -1,0 +1,794 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: SeuNome 
+      preConditions:
+        onFail: MARK_RAN
+        onError: HALT
+        not:
+          tableExists:
+            tableName: pessoas
+      changes:
+        - createTable:
+            tableName: pessoas
+            columns:
+              - column:
+                  name: id_pessoa
+                  type: INT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: nome_pessoa
+                  type: VARCHAR(35)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: nome_social
+                  type: VARCHAR(35)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: cgp_pessoa
+                  type: VARCHAR(14)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: rg_pessoa
+                  type: VARCHAR(11)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: data_nascimento
+                  type: DATE
+                  constraints:
+                    nullable: false
+              - column:
+                  name: endereco
+                  type: VARCHAR(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: nome_usuario
+                  type: VARCHAR(35)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: senha_usuario
+                  type: VARCHAR(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: dt_cadastro
+                  type: DATETIME
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: dt_alteracao
+                  type: DATETIME
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: true
+
+  - changeSet:
+      id: 2
+      author: SeuNome
+      preConditions:
+        onFail: MARK_RAN
+        onError: HALT
+        not:
+          tableExists:
+            tableName: cargos
+      changes:
+        - createTable:
+            tableName: cargos
+            columns:
+              - column:
+                  name: id_cargo
+                  type: INT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: nome_cargo
+                  type: VARCHAR(35)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: nivel_permissao
+                  type: INT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: dt_cadastro
+                  type: DATETIME
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: dt_alteracao
+                  type: DATETIME
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: true
+
+  - changeSet:
+      id: 3
+      author: SeuNome
+      preConditions:
+        onFail: MARK_RAN
+        onError: HALT
+        not:
+          tableExists:
+            tableName: empresas
+      changes:
+        - createTable:
+            tableName: empresas
+            columns:
+              - column:
+                  name: id_empresa
+                  type: INT
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: razao_social
+                  type: VARCHAR(35)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: nome_fantasia
+                  type: VARCHAR(35)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: cnpj
+                  type: CHAR(14)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: endereco
+                  type: VARCHAR(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: banco
+                  type: VARCHAR(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: agencia
+                  type: VARCHAR(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: dt_cadastro
+                  type: DATETIME
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: dt_alteracao
+                  type: DATETIME
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: true
+
+  - changeSet:
+      id: 4
+      author: SeuNome
+      preConditions:
+        onFail: MARK_RAN
+        onError: HALT
+        not:
+          tableExists:
+            tableName: cursos
+      changes:
+        - createTable:
+            tableName: cursos
+            columns:
+              - column:
+                  name: id_curso
+                  type: INT
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: nome_curso
+                  type: VARCHAR(35)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: desc_curso
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: programacao
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: dt_cadastro
+                  type: DATETIME
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: dt_alteracao
+                  type: DATETIME
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: true
+
+  - changeSet:
+      id: 5
+      author: SeuNome
+      preConditions:
+        onFail: MARK_RAN
+        onError: HALT
+        not:
+          tableExists:
+            tableName: trilhas
+      changes:
+        - createTable:
+            tableName: trilhas
+            columns:
+              - column:
+                  name: id_trilha
+                  type: INT
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: nome_trilha
+                  type: VARCHAR(35)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: desc_trilha
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: dt_cadastro
+                  type: DATETIME
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: dt_alteracao
+                  type: DATETIME
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: true
+
+  - changeSet:
+      id: 6
+      author: SeuNome
+      preConditions:
+        onFail: MARK_RAN
+        onError: HALT
+        not:
+          tableExists:
+            tableName: funcionarios
+      changes:
+        - createTable:
+            tableName: funcionarios
+            columns:
+              - column:
+                  name: id_pessoa
+                  type: INT
+                  constraints:
+                    nullable: false
+                    unique: true
+                    foreignKeyName: ix_funcionario_fk01
+                    references: pessoas(id_pessoa)
+              - column:
+                  name: pis
+                  type: VARCHAR(10)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: reservista
+                  type: VARCHAR(10)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: titulo_eleitor
+                  type: VARCHAR(10)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: bool_eClt
+                  type: BIT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: data_contratacao
+                  type: DATE
+                  constraints:
+                    nullable: false
+              - column:
+                  name: dt_cadastro
+                  type: DATETIME
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: dt_alteracao
+                  type: DATETIME
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: true
+
+  - changeSet:
+      id: 7
+      author: SeuNome
+      preConditions:
+        onFail: MARK_RAN
+        onError: HALT
+        not:
+          tableExists:
+            tableName: clientes
+      changes:
+        - createTable:
+            tableName: clientes
+            columns:
+              - column:
+                  name: id_pessoa
+                  type: INT
+                  constraints:
+                    nullable: false
+                    unique: true
+                    foreignKeyName: ix_cliente_fk01
+                    references: pessoas(id_pessoa)
+              - column:
+                  name: bool_eCandidato
+                  type: BIT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: id_empresa
+                  type: INT
+                  constraints:
+                    nullable: true
+                    foreignKeyName: ix_cliente_fk02
+                    references: empresas(id_empresa)
+              - column:
+                  name: banco
+                  type: VARCHAR(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: agencia
+                  type: VARCHAR(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: dt_cadastro
+                  type: DATETIME
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: dt_alteracao
+                  type: DATETIME
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: true
+
+  - changeSet:
+      id: 8
+      author: SeuNome
+      preConditions:
+        onFail: MARK_RAN
+        onError: HALT
+        not:
+          tableExists:
+            tableName: turmas
+      changes:
+        - createTable:
+            tableName: turmas
+            columns:
+              - column:
+                  name: id_turma
+                  type: INT
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: id_curso
+                  type: INT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: ix_turma_fk01
+                    references: cursos(id_curso)
+              - column:
+                  name: data_inicio
+                  type: DATE
+                  constraints:
+                    nullable: false
+              - column:
+                  name: data_fim
+                  type: DATE
+                  constraints:
+                    nullable: true
+              - column:
+                  name: periodo
+                  type: VARCHAR(15)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: dt_cadastro
+                  type: DATETIME
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: dt_alteracao
+                  type: DATETIME
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: true
+
+  - changeSet:
+      id: 9
+      author: SeuNome
+      preConditions:
+        onFail: MARK_RAN
+        onError: HALT
+        not:
+          tableExists:
+            tableName: classificacao
+      changes:
+        - createTable:
+            tableName: classificacao
+            columns:
+              - column:
+                  name: id_classificacao
+                  type: INT
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: nome_classificacao
+                  type: VARCHAR(35)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: dt_cadastro
+                  type: DATETIME
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: dt_alteracao
+                  type: DATETIME
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: true
+
+  - changeSet:
+      id: 10
+      author: SeuNome
+      preConditions:
+        onFail: MARK_RAN
+        onError: HALT
+        not:
+          tableExists:
+            tableName: classificacao_cursos
+      changes:
+        - createTable:
+            tableName: classificacao_cursos
+            columns:
+              - column:
+                  name: id_classificacao
+                  type: INT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: ix_classificacao_cursos_fk01
+                    references: classificacao(id_classificacao)
+              - column:
+                  name: id_curso
+                  type: INT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: ix_classificacao_cursos_fk02
+                    references: cursos(id_curso)
+              - column:
+                  name: dt_cadastro
+                  type: DATETIME
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: dt_alteracao
+                  type: DATETIME
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: true
+              - constraints:
+                  primaryKey:
+                    columnNames: [id_classificacao, id_curso]
+
+  - changeSet:
+      id: 11
+      author: SeuNome
+      preConditions:
+        onFail: MARK_RAN
+        onError: HALT
+        not:
+          tableExists:
+            tableName: cargo_funcionarios
+      changes:
+        - createTable:
+            tableName: cargo_funcionarios
+            columns:
+              - column:
+                  name: id_cargo
+                  type: INT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: ix_cargo_funcionarios_fk01
+                    references: cargos(id_cargo)
+              - column:
+                  name: id_pessoa
+                  type: INT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: ix_cargo_funcionarios_fk02
+                    references: funcionarios(id_pessoa)
+              - column:
+                  name: data_referencia
+                  type: DATE
+                  constraints:
+                    nullable: false
+              - column:
+                  name: dt_cadastro
+                  type: DATETIME
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: dt_alteracao
+                  type: DATETIME
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: true
+              - constraints:
+                  primaryKey:
+                    columnNames: [id_cargo, id_pessoa]
+
+  - changeSet:
+      id: 12
+      author: SeuNome
+      preConditions:
+        onFail: MARK_RAN
+        onError: HALT
+        not:
+          tableExists:
+            tableName: funcionario_turmas
+      changes:
+        - createTable:
+            tableName: funcionario_turmas
+            columns:
+              - column:
+                  name: id_turma
+                  type: INT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: ix_funcionario_turmas_fk01
+                    references: turmas(id_turma)
+              - column:
+                  name: id_pessoa
+                  type: INT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: ix_funcionario_turmas_fk02
+                    references: funcionarios(id_pessoa)
+              - column:
+                  name: data_referencia
+                  type: DATE
+                  constraints:
+                    nullable: false
+              - column:
+                  name: dt_cadastro
+                  type: DATETIME
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: dt_alteracao
+                  type: DATETIME
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: true
+              - constraints:
+                  primaryKey:
+                    columnNames: [id_turma, id_pessoa]
+
+  - changeSet:
+      id: 13
+      author: SeuNome
+      preConditions:
+        onFail: MARK_RAN
+        onError: HALT
+        not:
+          tableExists:
+            tableName: cliente_turmas
+      changes:
+        - createTable:
+            tableName: cliente_turmas
+            columns:
+              - column:
+                  name: id_turma
+                  type: INT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: ix_cliente_turmas_fk01
+                    references: turmas(id_turma)
+              - column:
+                  name: id_pessoa
+                  type: INT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: ix_cliente_turmas_fk02
+                    references: clientes(id_pessoa)
+              - column:
+                  name: data_referencia
+                  type: DATE
+                  constraints:
+                    nullable: false
+              - column:
+                  name: dt_cadastro
+                  type: DATETIME
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: dt_alteracao
+                  type: DATETIME
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: true
+              - constraints:
+                  primaryKey:
+                    columnNames: [id_turma, id_pessoa]
+
+  - changeSet:
+      id: 14
+      author: SeuNome
+      preConditions:
+        onFail: MARK_RAN
+        onError: HALT
+        not:
+          tableExists:
+            tableName: pcds
+      changes:
+        - createTable:
+            tableName: pcds
+            columns:
+              - column:
+                  name: id_pcd
+                  type: INT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: desc_pcd
+                  type: VARCHAR(35)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: classificacao
+                  type: VARCHAR(35)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: dt_cadastro
+                  type: DATETIME
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: dt_alteracao
+                  type: DATETIME
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: true
+
+  - changeSet:
+      id: 15
+      author: SeuNome
+      preConditions:
+        onFail: MARK_RAN
+        onError: HALT
+        not:
+          tableExists:
+            tableName: pessoa_pcds
+      changes:
+        - createTable:
+            tableName: pessoa_pcds
+            columns:
+              - column:
+                  name: id_pcd
+                  type: INT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: ix_pessoa_pcds_fk01
+                    references: pcds(id_pcd)
+              - column:
+                  name: id_pessoa
+                  type: INT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: ix_pessoa_pcds_fk02
+                    references: clientes(id_pessoa)
+              - column:
+                  name: data_referencia
+                  type: DATE
+                  constraints:
+                    nullable: false
+              - column:
+                  name: dt_cadastro
+                  type: DATETIME
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: dt_alteracao
+                  type: DATETIME
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: true
+              - constraints:
+                  primaryKey:
+                    columnNames: [id_pcd, id_pessoa]
+
+  - changeSet:
+      id: 16
+      author: SeuNome
+      preConditions:
+        onFail: MARK_RAN
+        onError: HALT
+        not:
+          tableExists:
+            tableName: cursos_trilha
+      changes:
+        - createTable:
+            tableName: cursos_trilha
+            columns:
+              - column:
+                  name: id_curso
+                  type: INT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: ix_cursos_trilha_fk01
+                    references: cursos(id_curso)
+              - column:
+                  name: id_trilha
+                  type: INT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: ix_cursos_trilha_fk02
+                    references: trilhas(id_trilha)
+              - column:
+                  name: dt_cadastro
+                  type: DATETIME
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: dt_alteracao
+                  type: DATETIME
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: true
+              - constraints:
+                  primaryKey:
+                    columnNames: [id_curso, id_trilha]
