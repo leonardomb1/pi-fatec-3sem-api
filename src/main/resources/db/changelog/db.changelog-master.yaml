@@ -792,3 +792,81 @@ databaseChangeLog:
               - constraints:
                   primaryKey:
                     columnNames: [id_curso, id_trilha]
+
+  - changeSet:
+      id: 17
+      author: SeuNome
+      preConditions:
+        onFail: MARK_RAN
+        onError: HALT
+        not:
+          tableExists:
+            tableName: escolaridades
+      changes:
+        - createTable:
+            tableName: escolaridades
+            columns:
+              - column:
+                  name: idEscolaridade
+                  type: INT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: nomeEscolaridade
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: 18
+      author: SeuNome
+      preConditions:
+        onFail: MARK_RAN
+        onError: HALT
+        not:
+          tableExists:
+            tableName: local_escolaridade
+      changes:
+        - createTable:
+            tableName: local_escolaridade
+            columns:
+              - column:
+                  name: idEscolaridadeLocal
+                  type: INT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: nomeEscolaridadeLocal
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: 19
+      author: SeuNome
+      preConditions:
+        onFail: MARK_RAN
+        onError: HALT
+        not:
+          tableExists:
+            tableName: nacionalidades
+      changes:
+        - createTable:
+            tableName: nacionalidades
+            columns:
+              - column:
+                  name: idPais
+                  type: INT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: nomePais
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
