@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: SRP
+  config:
+    import: classpath:db.properties
+  datasource:
+    url: jdbc:sqlserver://localhost:48000;databaseName=SRP;encrypt=true;trustServerCertificate=true
+    username: ${db.username}
+    password: ${db.password}
+    driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+    open-in-view: false
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.yaml
+    enabled: false
