@@ -1,4 +1,4 @@
-package com.FATEC.SRP;
+package com.fatec.srp;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
