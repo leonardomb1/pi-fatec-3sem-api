@@ -7,12 +7,16 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import jakarta.annotation.PostConstruct;
-
 /**
- * Classe principal da aplicação Spring Boot.
+ * Classe principal que inicia a aplicação Spring Boot.
  * 
- * Esta classe é anotada com '@SpringBootApplication, que marca a classe principal de uma aplicação Spring Boot.
- * O pacote base para escanear componentes Spring é definido por scanBasePackages.
+ * <p>Conceitos de POO utilizados:
+ * <ul>
+ *   <li>Encapsulamento: Atributos privados com acesso através de getters e setters.</li>
+ *   <li>Abstração: Representa a aplicação Spring Boot com seus atributos e comportamentos.</li>
+ *   <li>Herança: Utilização de anotações Spring para herdar comportamentos de configuração e inicialização.</li>
+ * </ul>
+ * </p>
  */
 @SpringBootApplication(scanBasePackages = "com.fatec.*")
 @EnableJpaRepositories("com.fatec.*")
@@ -28,11 +32,12 @@ public class SrpApplication {
     public static void main(String[] args) {
         SpringApplication.run(SrpApplication.class, args);
     }
-        /**
+
+    /**
      * Método de inicialização pós-construção.
      * 
-     * * @PostConstruct: Anotação que indica que este método deve ser executado após a construção do bean.
-     * Este método imprime o nome de usuário e a senha do banco de dados no console.
+     * <p>A anotação {@code @PostConstruct} indica que este método deve ser executado
+     * para inicializar recursos ou configurar propriedades após a construção do bean.
      */
     @PostConstruct
     public void init() {

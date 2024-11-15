@@ -1,5 +1,7 @@
 package com.fatec.srp.models;
 
+import java.time.LocalDateTime;
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -9,10 +11,18 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
- * Representa uma entidade Empresa no sistema.
- * Mapeia a tabela "empresas" no banco de dados.
+ * Classe EmpresasModel que representa uma entidade de empresa no sistema.
+ * Esta classe herda de PessoasModel e utiliza anotações JPA para mapeamento
+ * de banco de dados e validações.
+ * 
+ * <p>Conceitos de POO utilizados:
+ * <ul>
+ *   <li>Herança: EmpresasModel herda de PessoasModel.</li>
+ *   <li>Encapsulamento: Uso de getters e setters para acessar os atributos privados.</li>
+ * </ul>
+ * </p>
+ * 
  */
-
 @Getter
 @Setter
 @AllArgsConstructor
@@ -24,7 +34,8 @@ public class EmpresasModel extends PessoasModel {
 
     /**
      * Razão social da empresa.
-     * Campo obrigatório.
+     * 
+     * @param razaoSocial não pode ser nulo ou vazio.
      */
     @Column(name = "razao_social", nullable = false)
     @NotBlank(message = "Razão social é obrigatória")
@@ -32,14 +43,16 @@ public class EmpresasModel extends PessoasModel {
 
     /**
      * Nome fantasia da empresa.
-     * Campo opcional.
+     * 
+     * @param nomeFantasia pode ser nulo.
      */
     @Column(name = "nome_fantasia", nullable = true)
     private String nomeFantasia;
 
     /**
      * CNPJ da empresa.
-     * Campo obrigatório.
+     * 
+     * @param cnpj deve ter exatamente 14 dígitos, não pode ser nulo ou vazio, e deve ser único.
      */
     @Column(name = "cnpj", nullable = false, length = 14, unique = true)
     @NotBlank(message = "CNPJ é obrigatório")
@@ -48,7 +61,8 @@ public class EmpresasModel extends PessoasModel {
 
     /**
      * Endereço da empresa.
-     * Campo obrigatório.
+     * 
+     * @param endereco não pode ser nulo ou vazio.
      */
     @Column(name = "endereco", nullable = false)
     @NotBlank(message = "Endereço é obrigatório")
@@ -56,7 +70,8 @@ public class EmpresasModel extends PessoasModel {
 
     /**
      * Banco da empresa.
-     * Campo obrigatório.
+     * 
+     * @param banco não pode ser nulo ou vazio.
      */
     @Column(name = "banco", nullable = false)
     @NotBlank(message = "Banco é obrigatório")
@@ -64,19 +79,32 @@ public class EmpresasModel extends PessoasModel {
 
     /**
      * Agência bancária da empresa.
-     * Campo obrigatório.
+     * 
+     * @param agencia não pode ser nulo ou vazio.
      */
     @Column(name = "agencia", nullable = false)
     @NotBlank(message = "Agência é obrigatória")
     private String agencia;
 
+    /**
+     * Método executado antes de persistir um novo registro.
+     * Define a data de cadastro como a data e hora atual.
+     * 
+     * @PrePersist Indica que o método deve ser executado antes de persistir o registro.
+     */
     @PrePersist
     protected void onCreate() {
-        super.onCreate();
+        dtCadastro = LocalDateTime.now();
     }
 
+    /**
+     * Método executado antes de atualizar um registro existente.
+     * Define a data de alteração como a data e hora atual.
+     * 
+     * @PreUpdate Indica que o método deve ser executado antes de atualizar o registro.
+     */
     @PreUpdate
     protected void onUpdate() {
-        super.onUpdate();
+        dtAlteracao = LocalDateTime.now();
     }
 }
