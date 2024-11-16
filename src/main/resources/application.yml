@@ -8,6 +8,7 @@ spring:
     username: ${db.username}
     password: ${db.password}
     driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    initialization-mode: always
   jpa:
     hibernate:
       ddl-auto: create

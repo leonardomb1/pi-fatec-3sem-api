@@ -14,21 +14,21 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fatec.srp.common.AppConstants;
-import com.fatec.srp.models.CargosModel;
-import com.fatec.srp.service.CargosService;
+import com.fatec.srp.models.CargoModel;
+import com.fatec.srp.service.CargoService;
 
 @RequestMapping("/api/cargo")
 @RestController
-public class CargosController implements IController<CargosModel, String> {
+public class CargoController implements IController<CargoModel, String> {
     
     @Autowired
-    private CargosService cargoService;
+    private CargoService Cargoervice;
     
-    @GetMapping
-    public ResponseEntity<ResponseBase<List<CargosModel>>> getAll() {
-        List<CargosModel> lCargo = cargoService.read();
+    @GetMapping 
+    public ResponseEntity<ResponseBase<List<CargoModel>>> getAll() {
+        List<CargoModel> lCargo = Cargoervice.read();
 
-        ResponseBase<List<CargosModel>> cBase = ResponseBase.<List<CargosModel>>builder()
+        ResponseBase<List<CargoModel>> cBase = ResponseBase.<List<CargoModel>>builder()
             .error(false)
             .info("OK")
             .message(lCargo)
@@ -43,10 +43,10 @@ public class CargosController implements IController<CargosModel, String> {
     }
 
     @GetMapping("/{cargoId}")
-    public ResponseEntity<ResponseBase<CargosModel>> getById(@PathVariable String cargoId) {
-        CargosModel cargo = cargoService.read(cargoId);
+    public ResponseEntity<ResponseBase<CargoModel>> getById(@PathVariable String cargoId) {
+        CargoModel cargo = Cargoervice.read(cargoId);
 
-        ResponseBase<CargosModel> cBase = ResponseBase.<CargosModel>builder()
+        ResponseBase<CargoModel> cBase = ResponseBase.<CargoModel>builder()
             .error(false)
             .info("OK")
             .message(cargo)
@@ -61,10 +61,10 @@ public class CargosController implements IController<CargosModel, String> {
     }
 
     @PostMapping
-    public ResponseEntity<ResponseBase<CargosModel>> getBody(@RequestBody CargosModel cargo) {
-        cargoService.create(cargo);
+    public ResponseEntity<ResponseBase<CargoModel>> getBody(@RequestBody CargoModel cargo) {
+        Cargoervice.create(cargo);
 
-        ResponseBase<CargosModel> cBase = ResponseBase.<CargosModel>builder()
+        ResponseBase<CargoModel> cBase = ResponseBase.<CargoModel>builder()
             .error(false)
             .info("OK")
             .message(cargo)
@@ -79,10 +79,10 @@ public class CargosController implements IController<CargosModel, String> {
     }
 
     @PutMapping("/{cargoId}")
-    public ResponseEntity<ResponseBase<CargosModel>> update(@PathVariable String cargoId, @RequestBody CargosModel cargo) {
-        CargosModel uCargo = cargoService.update(cargoId, cargo);
+    public ResponseEntity<ResponseBase<CargoModel>> update(@PathVariable String cargoId, @RequestBody CargoModel cargo) {
+        CargoModel uCargo = Cargoervice.update(cargoId, cargo);
 
-        ResponseBase<CargosModel> cBase = ResponseBase.<CargosModel>builder()
+        ResponseBase<CargoModel> cBase = ResponseBase.<CargoModel>builder()
             .error(false)
             .info("OK")
             .message(uCargo)

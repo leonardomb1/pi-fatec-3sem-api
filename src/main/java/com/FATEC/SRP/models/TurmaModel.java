@@ -1,71 +1,66 @@
 package com.fatec.srp.models;
 
-import jakarta.persistence.*;
+import java.sql.Date;
+import java.time.LocalDateTime;
+import java.util.List;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 
-import java.util.Date;
-
-/**
- * Representa o modelo de uma Turma.
- */
 @Getter
 @Setter
-@AllArgsConstructor
-@Builder
-@NoArgsConstructor
 @Entity
-@Table(name = "turmas")
+@Table(name="Turmas")
 public class TurmaModel {
-
-    /**
-     * Identificador único da turma.
-     */
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idTurma;
+    private Long id;
 
-    /**
-     * Identificador do curso ao qual a turma pertence.
-     */
-    @Column(name = "id_curso", nullable = false)
-    private Integer idCurso;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_curso", referencedColumnName = "id")
+    private CursoModel curso;
 
-    /**
-     * Data de início da turma.
-     */
     @Column(name = "data_inicio", nullable = false)
-    @Temporal(TemporalType.DATE)
     private Date dataInicio;
 
-    /**
-     * Data de término da turma.
-     */
-    @Column(name = "data_fim")
-    @Temporal(TemporalType.DATE)
+    @Column(name = "data_fim", nullable = false)
     private Date dataFim;
 
-    /**
-     * Período da turma (ex: manhã, tarde, noite).
-     */
-    @Column(name = "periodo", nullable = false)
+    @Column(name = "periodo", nullable = false, length = 15)
     private String periodo;
 
-    /**
-     * Data de cadastro da turma.
-     */
     @Column(name = "dt_cadastro", updatable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date dtCadastro;
+    private LocalDateTime dtCadastro;
 
-    /**
-     * Data da última alteração da turma.
-     */
+    @OneToMany(mappedBy = "turma")
+    private List<FuncionarioTurmaModel> funcionarioTurma;
+
     @Column(name = "dt_alteracao")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date dtAlteracao;
-}
+    private LocalDateTime dtAlteracao;
+
+    @OneToMany(mappedBy = "turma")
+    private List<AlunoTurmaModel> alunoTurma;
+
+    @PrePersist
+    protected void onCreate() {
+        dtCadastro = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        dtAlteracao = LocalDateTime.now();
+    }
+}   

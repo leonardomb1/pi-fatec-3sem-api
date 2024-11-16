@@ -18,21 +18,33 @@ import jakarta.persistence.GenerationType;
 @Getter
 @Setter
 @Entity
-@Table(name="Trilhas")
-public class TrilhaModel {
+@Table(name="Empresas")
+public class EmpresaModel {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany(mappedBy = "trilha")
-    private List<CursoTrilhaModel> trilhaCurso;
+    @OneToMany(mappedBy = "empresa")
+    private List<AlunoModel> aluno;
 
-    @Column(name = "nome_trilha", nullable = false, length = 100)
-    private String nomeTrilha;
+    @Column(name = "razao_social", nullable = false, length = 100)
+    private String razaoSocial;
 
-    @Column(name = "desc_trilha", nullable = false, length = 100)
-    private String descTrilha;
+    @Column(name = "nome_fantasia", nullable = false, length = 100)
+    private String nomeFantasia;
+   
+    @Column(name = "cnpj", nullable = false, length = 18)
+    private String cnpj;
+
+    @Column(name = "endereco", nullable = false, length = 100)
+    private String endereco;
+
+    @Column(name = "banco", nullable = false, length = 30)
+    private String banco;
+
+    @Column(name = "agencia", nullable = false, length = 30)
+    private String agencia;
 
     @Column(name = "dt_cadastro", updatable = false)
     private LocalDateTime dtCadastro;
@@ -49,4 +61,4 @@ public class TrilhaModel {
     protected void onUpdate() {
         dtAlteracao = LocalDateTime.now();
     }
-} 
+}   
