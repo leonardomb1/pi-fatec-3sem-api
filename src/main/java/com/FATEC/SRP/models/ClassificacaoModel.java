@@ -18,21 +18,18 @@ import jakarta.persistence.GenerationType;
 @Getter
 @Setter
 @Entity
-@Table(name="Trilhas")
-public class TrilhaModel {
+@Table(name="Classificacoes")
+public class ClassificacaoModel {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany(mappedBy = "trilha")
-    private List<CursoTrilhaModel> trilhaCurso;
+    @OneToMany(mappedBy = "classificacao")
+    private List<CursoClassificacaoModel> classificacaoCurso;
 
-    @Column(name = "nome_trilha", nullable = false, length = 100)
-    private String nomeTrilha;
-
-    @Column(name = "desc_trilha", nullable = false, length = 100)
-    private String descTrilha;
+    @Column(name = "nome_classificacao", nullable = false, length = 30)
+    private String nomeClassificacao;
 
     @Column(name = "dt_cadastro", updatable = false)
     private LocalDateTime dtCadastro;

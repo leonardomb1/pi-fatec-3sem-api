@@ -1,71 +1,44 @@
 package com.fatec.srp.models;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
-
 import java.time.LocalDateTime;
+import java.util.List;
 
-
-import lombok.AllArgsConstructor;
-import lombok.Builder;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-/**
- * Representa o modelo de pré-requisitos de um curso.
- * Esta classe é mapeada para a tabela "pre_requisitos" no banco de dados.
- * Utiliza a classe PreRequisitoIdModel como chave composta.
- */
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 
 @Getter
 @Setter
-@AllArgsConstructor
-@Builder
-@NoArgsConstructor
 @Entity
-@Table(name = "pre_requisitos")
+@Table(name="Prerequisitos")
 public class PreRequisitoModel {
-
-    static final String TABLE_NAME = "pre_requisitos";
-
-        /**
-     * Identificador único da pessoa.
-     */
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", unique = true, nullable = false)
     private Long id;
+    
+    @OneToMany(mappedBy = "preRequisito")
+    private List<PreRequisitoCursoModel> preRequisitoCurso;
 
-    /**
-     * Titulo do requisito.
-     */
-    @NotEmpty(message = "Titulo é obrigatório")
-    @Column(name = "titulo", length = 40, nullable = true)
-    @Size(min = 5, max = 40)
-    private String titulo;
+    @Column(name = "nome_prerequisito", nullable = false, length = 30)
+    private String nomePrerequisito;
 
-    /**
-     * Descrição do requisito.
-     */
-    @NotEmpty(message = "Descrição é obrigatória")
-    @Column(name = "descricao", length = 100, nullable = true)
-    @Size(min = 5, max = 100)
-    private String descricao;
+    @Column(name = "desc_prerequisito", nullable = false, length = 100)
+    private String descPrerequisito;
 
-    /**
-     * Data de cadastro da pessoa.
-     */
     @Column(name = "dt_cadastro", updatable = false)
     private LocalDateTime dtCadastro;
 
-    /**
-     * Data da última alteração no cadastro da pessoa.
-     */
     @Column(name = "dt_alteracao")
     private LocalDateTime dtAlteracao;
-
-    
 
     @PrePersist
     protected void onCreate() {
@@ -76,4 +49,4 @@ public class PreRequisitoModel {
     protected void onUpdate() {
         dtAlteracao = LocalDateTime.now();
     }
-}
+} 
