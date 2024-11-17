@@ -17,13 +17,27 @@ import com.fatec.srp.common.AppConstants;
 import com.fatec.srp.models.CargoModel;
 import com.fatec.srp.service.CargoService;
 
+
+/**
+ * Controlador responsável por gerenciar as operações relacionadas aos cargos.
+ * Este controlador implementa a interface IController e utiliza o CargoService para realizar operações CRUD.
+ */
 @RequestMapping("/api/cargo")
 @RestController
 public class CargoController implements IController<CargoModel, String> {
     
+
+    /**
+     * Serviço de Cargo injetado automaticamente pelo Spring.
+     */
     @Autowired
     private CargoService Cargoervice;
+
     
+    /**
+     * Recupera todos os cargos.
+     * @return ResponseEntity contendo uma lista de CargoModel encapsulada em um ResponseBase.
+     */
     @GetMapping 
     public ResponseEntity<ResponseBase<List<CargoModel>>> getAll() {
         List<CargoModel> lCargo = Cargoervice.read();
@@ -42,6 +56,11 @@ public class CargoController implements IController<CargoModel, String> {
         }
     }
 
+    /**
+     * Recupera um cargo específico pelo ID.
+     * @param cargoId O ID do cargo a ser recuperado.
+     * @return ResponseEntity contendo um CargoModel encapsulado em um ResponseBase.
+     */
     @GetMapping("/{cargoId}")
     public ResponseEntity<ResponseBase<CargoModel>> getById(@PathVariable String cargoId) {
         CargoModel cargo = Cargoervice.read(cargoId);
@@ -60,6 +79,11 @@ public class CargoController implements IController<CargoModel, String> {
         }
     }
 
+    /**
+     * Cria um novo cargo.
+     * @param cargo O CargoModel contendo os dados do novo cargo.
+     * @return ResponseEntity contendo o CargoModel criado encapsulado em um ResponseBase.
+     */
     @PostMapping
     public ResponseEntity<ResponseBase<CargoModel>> getBody(@RequestBody CargoModel cargo) {
         Cargoervice.create(cargo);
@@ -78,6 +102,13 @@ public class CargoController implements IController<CargoModel, String> {
         }
     }
 
+
+    /**
+     * Atualiza um cargo existente.
+     * @param cargoId O ID do cargo a ser atualizado.
+     * @param cargo O CargoModel contendo os novos dados do cargo.
+     * @return ResponseEntity contendo o CargoModel atualizado encapsulado em um ResponseBase.
+     */
     @PutMapping("/{cargoId}")
     public ResponseEntity<ResponseBase<CargoModel>> update(@PathVariable String cargoId, @RequestBody CargoModel cargo) {
         CargoModel uCargo = Cargoervice.update(cargoId, cargo);
