@@ -21,6 +21,11 @@ import jakarta.persistence.PreUpdate;
  * Representa um modelo de aluno, incluindo informações pessoais, acadêmicas e de registro.
  * Esta classe é mapeada para a tabela "Aluno" no banco de dados e estabelece relações com outras entidades
  * como Usuario, Empresa e AlunoTurma.
+ * 
+ * Conceitos OOP utilizados:
+ * - **Encapsulamento**: A classe encapsula todas as propriedades do aluno, oferecendo métodos getters e setters gerados automaticamente pela anotação Lombok.
+ * - **Associação**: A classe utiliza associações de relacionamento entre entidades com anotações JPA, como @OneToOne, @ManyToOne, e @OneToMany.
+ * - **Abstração**: A entidade representa um aluno de forma abstrata, ocultando a complexidade da implementação interna do banco de dados.
  */
 @Getter
 @Setter

@@ -18,6 +18,12 @@ import jakarta.persistence.GenerationType;
 /**
  * Representa os pré-requisitos para cursos no sistema. Esta classe é mapeada para a tabela "Prerequisitos" no banco de dados.
  * Contém informações sobre os pré-requisitos, como nome, descrição, e as relações com os cursos que os utilizam.
+ * 
+ * Conceitos OOP utilizados:
+ * - **Associação**: A classe possui uma associação de um para muitos com `PreRequisitoCursoModel`, indicando que um pré-requisito pode ser utilizado em vários cursos.
+ * - **Encapsulamento**: Os campos como `nomePrerequisito`, `descPrerequisito` e as listas de cursos estão encapsulados, garantindo que o acesso e modificação sejam controlados.
+ * - **Abstração**: A classe abstrai os detalhes dos pré-requisitos e suas relações com os cursos, permitindo que esses dados sejam manipulados de forma simplificada.
+ * - **Modificação de Estado**: A classe tem métodos que alteram o estado do objeto, como as datas de cadastro e alteração, automaticamente configuradas no momento de persistência.
  */
 @Getter
 @Setter

@@ -13,6 +13,10 @@ import org.springframework.stereotype.Repository;
  * A interface estende {@link JpaRepository} com a entidade {@link CursoModel} e o tipo de chave primária {@link Integer}.
  * Isso significa que não há necessidade de implementar explicitamente os métodos de persistência,
  * pois o Spring Data JPA cuida disso automaticamente.
+ * 
+ * Conceitos OOP utilizados:
+ * - **Abstração**: A interface abstrai as operações de banco de dados para a entidade `CursoModel`, proporcionando uma interface simples para manipulação dos dados.
+ * - **Herança**: A interface `CursosRepository` herda a funcionalidade de persistência do `JpaRepository`, utilizando a implementação do Spring Data JPA para CRUD sem a necessidade de código adicional.
  */
 @Repository
 public interface CursosRepository extends JpaRepository<CursoModel, Integer> {

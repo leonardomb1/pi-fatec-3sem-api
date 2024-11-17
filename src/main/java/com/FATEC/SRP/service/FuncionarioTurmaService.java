@@ -19,6 +19,12 @@ import java.util.List;
  * 
  * A classe também usa {@link Transactional} para garantir que as operações de atualização e exclusão
  * sejam realizadas de forma atômica e consistentes.
+ *
+ * Conceitos de OOP aplicados:
+ * - **Encapsulamento**: A classe `FuncionarioTurmaService` encapsula a lógica de manipulação dos dados de funcionários e turmas, oferecendo uma interface controlada para as operações de CRUD. Ela interage com o repositório para a persistência, mantendo a lógica de acesso aos dados separada do resto da aplicação.
+ * - **Responsabilidade Única**: A classe segue o princípio de responsabilidade única ao se concentrar apenas nas operações de CRUD relacionadas à entidade `FuncionarioTurmaModel`. O repositório é responsável pela persistência, enquanto a classe `FuncionarioTurmaService` cuida da lógica de aplicação, como validações e operações transacionais.
+ * - **Injeção de Dependência**: O repositório `FuncionarioTurmaRepository` é injetado automaticamente pelo Spring através da anotação `@Autowired`. Isso permite que a classe utilize as funcionalidades do repositório sem a necessidade de instanciá-lo manualmente, promovendo o desacoplamento entre as classes.
+ * - **Transações**: A anotação `@Transactional` assegura que as operações de CRUD (criação, atualização e exclusão de registros de funcionário e turma) sejam realizadas dentro de uma transação. Isso garante a integridade dos dados e permite a reversão das operações em caso de falha, assegurando que o banco de dados permaneça em um estado consistente.
  */
 @Service
 public class FuncionarioTurmaService implements IService<FuncionarioTurmaModel, String> {

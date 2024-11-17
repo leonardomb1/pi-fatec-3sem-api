@@ -13,6 +13,10 @@ import org.springframework.stereotype.Repository;
  * buscar por ID, atualizar, excluir e listar todas as instâncias de {@link TrilhaModel}.
  * 
  * A interface {@link JpaRepository} também permite a criação de consultas personalizadas.
+ * 
+ * Conceitos OOP utilizados:
+ * - **Abstração**: A interface proporciona uma camada de abstração para as operações de banco de dados, escondendo a implementação real dos métodos.
+ * - **Herança**: A interface herda funcionalidades do {@link JpaRepository}, que implementa as operações básicas de persistência.
  */
 @Repository
 public interface TrilhaRepository extends JpaRepository<TrilhaModel, Integer> {

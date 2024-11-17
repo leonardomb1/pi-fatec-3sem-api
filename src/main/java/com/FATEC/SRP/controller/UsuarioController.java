@@ -21,6 +21,12 @@ import com.fatec.srp.service.UsuarioService;
  * Controlador para gerenciar os usuários.
  * Esta classe implementa os métodos de CRUD para os usuários, permitindo operações
  * de criação, leitura e atualização de usuários através da API.
+ *
+ * Conceitos de OOP:
+ * - **Encapsulamento**: A classe `UsuarioController` abstrai a lógica de manipulação dos dados dos usuários, delegando essa responsabilidade ao serviço `UsuarioService`. O controlador oferece uma interface simples para o consumo da API, enquanto a lógica detalhada é mantida fora dessa classe.
+ * - **Injeção de Dependência**: O serviço `UsuarioService` é injetado via `@Autowired`, promovendo a separação de responsabilidades e facilitando o teste e a manutenção.
+ * - **Padrão de Projeto MVC**: O controlador atua como parte do padrão Model-View-Controller, sendo responsável por interagir com o modelo (`UsuarioModel`) e fornecer a resposta ao cliente de acordo com a requisição.
+ * - **Responsabilidade Única**: Cada método do controlador tem uma função específica: listar usuários, recuperar um usuário por ID, criar ou atualizar um usuário, respeitando o princípio da responsabilidade única e mantendo o código limpo e organizado.
  */
 @RequestMapping("/api/usuario")
 @RestController

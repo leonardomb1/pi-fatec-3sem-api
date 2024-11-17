@@ -13,6 +13,10 @@ import org.springframework.stereotype.Repository;
  * buscar por ID, atualizar, excluir e listar todas as instâncias de {@link PreRequisitoModel}.
  * 
  * A interface {@link JpaRepository} também permite a criação de consultas personalizadas.
+ * 
+ * Conceitos OOP utilizados:
+ * - **Abstração**: A interface esconde a complexidade das operações de banco de dados, fornecendo métodos simples de persistência para a entidade.
+ * - **Herança**: A interface herda funcionalidades do {@link JpaRepository}, que é uma implementação da interface de repositório do Spring Data, fornecendo métodos prontos para usar.
  */
 @Repository
 public interface PreRequisitoRepository extends JpaRepository<PreRequisitoModel, Integer> {

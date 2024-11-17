@@ -19,6 +19,12 @@ import java.util.List;
  * 
  * A classe também usa {@link Transactional} para garantir que as operações de atualização e exclusão
  * sejam realizadas de forma atômica e consistentes.
+ *
+ * Conceitos de OOP aplicados:
+ * - **Encapsulamento**: A classe `ClassificacaoService` encapsula as operações relacionadas às classificações, oferecendo métodos bem definidos para criar, ler, atualizar e excluir registros.
+ * - **Responsabilidade Única**: A classe segue o princípio de responsabilidade única, focando exclusivamente nas operações de classificação, permitindo manutenção e evolução com clareza.
+ * - **Injeção de Dependência**: O repositório `ClassificacaoRepository` é injetado automaticamente, permitindo a separação de preocupações entre a camada de serviço e a de acesso a dados.
+ * - **Transações**: A anotação `@Transactional` garante que as operações de criação, atualização e exclusão sejam realizadas dentro de uma transação, mantendo a integridade dos dados.
  */
 @Service
 public class ClassificacaoService implements IService<ClassificacaoModel, String> {

@@ -19,6 +19,12 @@ import java.util.List;
  * 
  * A classe também usa {@link Transactional} para garantir que as operações de atualização e exclusão
  * sejam realizadas de forma atômica e consistentes.
+ *
+ * Conceitos de OOP aplicados:
+ * - **Encapsulamento**: A classe `CargoService` encapsula as operações relacionadas aos cargos, tornando o acesso e a manipulação de dados mais controlados e seguros.
+ * - **Responsabilidade Única**: A classe segue o princípio de responsabilidade única, concentrando-se exclusivamente nas operações relacionadas aos cargos.
+ * - **Injeção de Dependência**: O repositório `CargoRepository` é injetado automaticamente, promovendo a separação de responsabilidades e facilitando a manutenção do código.
+ * - **Transações**: A anotação `@Transactional` garante que as operações de criação, atualização e exclusão de cargos sejam atômicas, garantindo a integridade dos dados.
  */
 @Service
 public class CargoService implements IService<CargoModel, String> {

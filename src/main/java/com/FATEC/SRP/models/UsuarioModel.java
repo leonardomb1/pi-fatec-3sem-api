@@ -15,6 +15,11 @@ import jakarta.persistence.PreUpdate;
  * Representa um usuário no sistema. Cada usuário tem um nome de usuário, nome completo, nome social, senha,
  * e informações sobre quando foi cadastrado ou alterado no sistema.
  * Esta classe é mapeada para a tabela "Usuario" no banco de dados.
+ * 
+ * Conceitos OOP utilizados:
+ * - **Encapsulamento**: Os campos como `nomeUsuario`, `nomePessoa`, `nomeSocial`, `senha`, entre outros, estão encapsulados, controlando o acesso e a modificação dos dados do usuário.
+ * - **Abstração**: A classe abstrai os detalhes sobre os usuários do sistema, expondo apenas as informações necessárias para a operação.
+ * - **Modificação de Estado**: A classe possui métodos que alteram o estado do objeto, como as datas de cadastro e alteração, que são configuradas automaticamente durante a persistência e atualização do objeto.
  */
 @Getter
 @Setter

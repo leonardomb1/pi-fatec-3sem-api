@@ -19,23 +19,32 @@ import com.fatec.srp.service.AlunoService;
 
 /**
  * Controlador responsável por gerenciar as operações relacionadas aos alunos.
- * Este controlador implementa a interface IController e utiliza o AlunoService para realizar operações CRUD.
+ * <p>
+ * Este controlador implementa a interface IController, demonstrando polimorfismo
+ * ao adaptar operações genéricas para o contexto da entidade AlunoModel.
+ * </p>
  */
 @RequestMapping("/api/aluno")
 @RestController
 public class AlunoController implements IController<AlunoModel, String> {
-    
+
     /**
      * Serviço de aluno injetado automaticamente pelo Spring.
+     * <p>
+     * Utiliza injeção de dependência para promover baixo acoplamento e reutilização do AlunoService.
+     * </p>
      */
     @Autowired
     private AlunoService alunoService;
-    
+
     /**
      * Recupera todos os alunos.
+     * <p>
+     * Implementa encapsulamento ao retornar os dados em um ResponseBase, estruturando a resposta.
+     * </p>
      * @return ResponseEntity contendo uma lista de AlunoModel encapsulada em um ResponseBase.
      */
-    @GetMapping 
+    @GetMapping
     public ResponseEntity<ResponseBase<List<AlunoModel>>> getAll() {
         List<AlunoModel> lAluno = alunoService.read();
 
@@ -46,7 +55,7 @@ public class AlunoController implements IController<AlunoModel, String> {
             .status(AppConstants.OK)
             .build();
 
-        if(lAluno == null) {
+        if (lAluno == null) {
             return ResponseEntity.notFound().build();
         } else {
             return ResponseEntity.ok(cBase);
@@ -55,6 +64,9 @@ public class AlunoController implements IController<AlunoModel, String> {
 
     /**
      * Recupera um aluno específico pelo ID.
+     * <p>
+     * Demonstra reutilização de código, delegando a lógica de recuperação ao AlunoService.
+     * </p>
      * @param alunoId O ID do aluno a ser recuperado.
      * @return ResponseEntity contendo um AlunoModel encapsulado em um ResponseBase.
      */
@@ -69,7 +81,7 @@ public class AlunoController implements IController<AlunoModel, String> {
             .status(AppConstants.OK)
             .build();
 
-        if(Aluno == null) {
+        if (Aluno == null) {
             return ResponseEntity.notFound().build();
         } else {
             return ResponseEntity.ok(cBase);
@@ -78,6 +90,9 @@ public class AlunoController implements IController<AlunoModel, String> {
 
     /**
      * Cria um novo aluno.
+     * <p>
+     * Encapsula a lógica de criação e utiliza abstração ao delegar a lógica para o AlunoService.
+     * </p> 
      * @param aluno O AlunoModel contendo os dados do novo aluno.
      * @return ResponseEntity contendo o AlunoModel criado encapsulado em um ResponseBase.
      */
@@ -92,7 +107,7 @@ public class AlunoController implements IController<AlunoModel, String> {
             .status(AppConstants.OK)
             .build();
 
-        if(aluno == null) {
+        if (aluno == null) {
             return ResponseEntity.notFound().build();
         } else {
             return ResponseEntity.ok(cBase);
@@ -101,8 +116,11 @@ public class AlunoController implements IController<AlunoModel, String> {
 
     /**
      * Atualiza um aluno existente.
-     * @param alunoId O ID do aluno a ser atualizado.
+     * <p>
+     * Demonstra polimorfismo ao implementar a atualização de dados de acordo com o contrato da interface.
+     * </p>
      * @param aluno O AlunoModel contendo os novos dados do aluno.
+     * @param alunoId O ID do aluno a ser atualizado.
      * @return ResponseEntity contendo o AlunoModel atualizado encapsulado em um ResponseBase.
      */
     @PutMapping("/{alunoId}")
@@ -116,7 +134,7 @@ public class AlunoController implements IController<AlunoModel, String> {
             .status(AppConstants.OK)
             .build();
 
-        if(aluno == null) {
+        if (aluno == null) {
             return ResponseEntity.notFound().build();
         } else {
             return ResponseEntity.ok(cBase);

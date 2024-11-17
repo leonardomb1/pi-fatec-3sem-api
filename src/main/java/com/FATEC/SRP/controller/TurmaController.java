@@ -22,6 +22,12 @@ import com.fatec.srp.service.TurmaService;
  * Controlador para gerenciar as turmas.
  * Esta classe implementa os métodos de CRUD para as turmas, permitindo operações
  * de criação, leitura e atualização de turmas através da API.
+ *
+ * Conceitos de OOP:
+ * - **Encapsulamento**: A classe oculta a complexidade da lógica de negócios relacionada às turmas, delegando a execução das operações para o serviço `TurmaService` e fornecendo uma interface limpa para a interação com a API.
+ * - **Injeção de Dependência**: O serviço `TurmaService` é injetado usando `@Autowired`, facilitando a separação de responsabilidades e permitindo que o controlador se concentre apenas no gerenciamento das requisições.
+ * - **Padrão de Projeto MVC**: A classe segue o padrão MVC (Model-View-Controller), sendo responsável pela camada de controle da aplicação, manipulando as requisições da API e interagindo com o modelo `TurmaModel`.
+ * - **Responsabilidade Única**: Cada método da classe é responsável por uma operação específica: ler, criar ou atualizar turmas, respeitando o princípio de responsabilidade única.
  */
 @RequestMapping("/api/turma")
 @RestController
