@@ -19,6 +19,12 @@ import jakarta.persistence.GenerationType;
 /**
  * Representa a associação entre um funcionário e uma turma. Esta classe é mapeada para a tabela "funcionario_turmas" no banco de dados.
  * Contém informações sobre o funcionário, a turma e a razão social associada.
+ * 
+ * Conceitos OOP utilizados:
+ * - **Composição**: A classe `FuncionarioTurmaModel` possui uma associação com as classes `FuncionarioModel` (muitos para um) e `TurmaModel` (muitos para um), representando a relação de composição entre os objetos.
+ * - **Associação**: A classe estabelece uma relação de muitos para um com `FuncionarioModel` e `TurmaModel`.
+ * - **Encapsulamento**: Os campos como `funcionario`, `turma`, e `razaoSocial` são encapsulados, controlando como os dados são acessados e manipulados.
+ * - **Abstração**: A classe abstrai a funcionalidade relacionada à associação entre funcionários e turmas, sem expor diretamente sua implementação interna.
  */
 @Getter
 @Setter

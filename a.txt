@@ -1,0 +1,160 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ---------------------------< com.fatec:srp >----------------------------
+[INFO] Building srp 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.3.2:clean (default-clean) @ srp ---
+[INFO] Deleting C:\Users\lmbau\Datalake\repos\Faculdade\pi-fatec-3sem-api\target
+[INFO] 
+[INFO] >>> javadoc:3.6.3:javadoc (default-cli) > generate-sources @ srp >>>
+[INFO] 
+[INFO] <<< javadoc:3.6.3:javadoc (default-cli) < generate-sources @ srp <<<
+[INFO] 
+[INFO] 
+[INFO] --- javadoc:3.6.3:javadoc (default-cli) @ srp ---
+[INFO] No previous run data found, generating javadoc.
+[WARNING] Javadoc Warnings
+[WARNING] C:\Users\lmbau\Datalake\repos\Faculdade\pi-fatec-3sem-api\src\main\java\com\fatec\srp\controller\AlunoController.java:29: warning: use of default constructor, which does not provide a comment
+[WARNING] public class AlunoController implements IController<AlunoModel, String> {
+[WARNING] ^
+[WARNING] C:\Users\lmbau\Datalake\repos\Faculdade\pi-fatec-3sem-api\src\main\java\com\fatec\srp\models\AlunoModel.java:34: warning: use of default constructor, which does not provide a comment
+[WARNING] public class AlunoModel {
+[WARNING] ^
+[WARNING] C:\Users\lmbau\Datalake\repos\Faculdade\pi-fatec-3sem-api\src\main\java\com\fatec\srp\service\AlunoService.java:30: warning: use of default constructor, which does not provide a comment
+[WARNING] public class AlunoService implements IService<AlunoModel, String> {
+[WARNING] ^
+[WARNING] C:\Users\lmbau\Datalake\repos\Faculdade\pi-fatec-3sem-api\src\main\java\com\fatec\srp\controller\AlunoTurmaController.java:28: warning: use of default constructor, which does not provide a comment
+[WARNING] public class AlunoTurmaController implements IController<AlunoTurmaModel, String> {
+[WARNING] ^
+[WARNING] C:\Users\lmbau\Datalake\repos\Faculdade\pi-fatec-3sem-api\src\main\java\com\fatec\srp\models\AlunoTurmaModel.java:33: warning: use of default constructor, which does not provide a comment
+[WARNING] public class AlunoTurmaModel {
+[WARNING] ^
+[WARNING] C:\Users\lmbau\Datalake\repos\Faculdade\pi-fatec-3sem-api\src\main\java\com\fatec\srp\service\AlunoTurmaService.java:30: warning: use of default constructor, which does not provide a comment
+[WARNING] public class AlunoTurmaService implements IService<AlunoTurmaModel, String> {
+[WARNING] ^
+[WARNING] C:\Users\lmbau\Datalake\repos\Faculdade\pi-fatec-3sem-api\src\main\java\com\fatec\srp\controller\CargoController.java:29: warning: use of default constructor, which does not provide a comment
+[WARNING] public class CargoController implements IController<CargoModel, String> {
+[WARNING] ^
+[WARNING] C:\Users\lmbau\Datalake\repos\Faculdade\pi-fatec-3sem-api\src\main\java\com\fatec\srp\models\CargoModel.java:32: warning: use of default constructor, which does not provide a comment
+[WARNING] public class CargoModel {
+[WARNING] ^
+[WARNING] C:\Users\lmbau\Datalake\repos\Faculdade\pi-fatec-3sem-api\src\main\java\com\fatec\srp\service\CargoService.java:30: warning: use of default constructor, which does not provide a comment
+[WARNING] public class CargoService implements IService<CargoModel, String> {
+[WARNING] ^
+[WARNING] C:\Users\lmbau\Datalake\repos\Faculdade\pi-fatec-3sem-api\src\main\java\com\fatec\srp\controller\ClassificacaoController.java:29: warning: use of default constructor, which does not provide a comment
+[WARNING] public class ClassificacaoController implements IController<ClassificacaoModel, String> {
+[WARNING] ^
+[WARNING] C:\Users\lmbau\Datalake\repos\Faculdade\pi-fatec-3sem-api\src\main\java\com\fatec\srp\models\ClassificacaoModel.java:32: warning: use of default constructor, which does not provide a comment
+[WARNING] public class ClassificacaoModel {
+[WARNING] ^
+[WARNING] C:\Users\lmbau\Datalake\repos\Faculdade\pi-fatec-3sem-api\src\main\java\com\fatec\srp\service\ClassificacaoService.java:30: warning: use of default constructor, which does not provide a comment
+[WARNING] public class ClassificacaoService implements IService<ClassificacaoModel, String> {
+[WARNING] ^
+[WARNING] C:\Users\lmbau\Datalake\repos\Faculdade\pi-fatec-3sem-api\src\main\java\com\fatec\srp\controller\CursoClassificacaoController.java:32: warning: use of default constructor, which does not provide a comment
+[WARNING] public class CursoClassificacaoController implements IController<CursoClassificacaoModel, String> {
+[WARNING] ^
+[WARNING] C:\Users\lmbau\Datalake\repos\Faculdade\pi-fatec-3sem-api\src\main\java\com\fatec\srp\models\CursoClassificacaoModel.java:32: warning: use of default constructor, which does not provide a comment
+[WARNING] public class CursoClassificacaoModel {
+[WARNING] ^
+[WARNING] C:\Users\lmbau\Datalake\repos\Faculdade\pi-fatec-3sem-api\src\main\java\com\fatec\srp\service\CursoClassificacaoService.java:30: warning: use of default constructor, which does not provide a comment
+[WARNING] public class CursoClassificacaoService implements IService<CursoClassificacaoModel, String> {
+[WARNING] ^
+[WARNING] C:\Users\lmbau\Datalake\repos\Faculdade\pi-fatec-3sem-api\src\main\java\com\fatec\srp\models\CursoModel.java:33: warning: use of default constructor, which does not provide a comment
+[WARNING] public class CursoModel {
+[WARNING] ^
+[WARNING] C:\Users\lmbau\Datalake\repos\Faculdade\pi-fatec-3sem-api\src\main\java\com\fatec\srp\controller\CursosController.java:32: warning: use of default constructor, which does not provide a comment
+[WARNING] public class CursosController implements IController<CursoModel, String> {
+[WARNING] ^
+[WARNING] C:\Users\lmbau\Datalake\repos\Faculdade\pi-fatec-3sem-api\src\main\java\com\fatec\srp\service\CursosService.java:30: warning: use of default constructor, which does not provide a comment
+[WARNING] public class CursosService implements IService<CursoModel, String> {
+[WARNING] ^
+[WARNING] C:\Users\lmbau\Datalake\repos\Faculdade\pi-fatec-3sem-api\src\main\java\com\fatec\srp\controller\CursoTrilhaController.java:32: warning: use of default constructor, which does not provide a comment
+[WARNING] public class CursoTrilhaController implements IController<CursoTrilhaModel, String> {
+[WARNING] ^
+[WARNING] C:\Users\lmbau\Datalake\repos\Faculdade\pi-fatec-3sem-api\src\main\java\com\fatec\srp\models\CursoTrilhaModel.java:32: warning: use of default constructor, which does not provide a comment
+[WARNING] public class CursoTrilhaModel {
+[WARNING] ^
+[WARNING] C:\Users\lmbau\Datalake\repos\Faculdade\pi-fatec-3sem-api\src\main\java\com\fatec\srp\service\CursoTrilhaService.java:30: warning: use of default constructor, which does not provide a comment
+[WARNING] public class CursoTrilhaService implements IService<CursoTrilhaModel, String> {
+[WARNING] ^
+[WARNING] C:\Users\lmbau\Datalake\repos\Faculdade\pi-fatec-3sem-api\src\main\java\com\fatec\srp\controller\EmpresaController.java:32: warning: use of default constructor, which does not provide a comment
+[WARNING] public class EmpresaController implements IController<EmpresaModel, String> {
+[WARNING] ^
+[WARNING] C:\Users\lmbau\Datalake\repos\Faculdade\pi-fatec-3sem-api\src\main\java\com\fatec\srp\models\EmpresaModel.java:33: warning: use of default constructor, which does not provide a comment
+[WARNING] public class EmpresaModel {
+[WARNING] ^
+[WARNING] C:\Users\lmbau\Datalake\repos\Faculdade\pi-fatec-3sem-api\src\main\java\com\fatec\srp\service\EmpresaService.java:30: warning: use of default constructor, which does not provide a comment
+[WARNING] public class EmpresaService implements IService<EmpresaModel, String> {
+[WARNING] ^
+[WARNING] C:\Users\lmbau\Datalake\repos\Faculdade\pi-fatec-3sem-api\src\main\java\com\fatec\srp\models\FuncionarioModel.java:34: warning: use of default constructor, which does not provide a comment
+[WARNING] public class FuncionarioModel {
+[WARNING] ^
+[WARNING] C:\Users\lmbau\Datalake\repos\Faculdade\pi-fatec-3sem-api\src\main\java\com\fatec\srp\controller\FuncionarioTurmaController.java:32: warning: use of default constructor, which does not provide a comment
+[WARNING] public class FuncionarioTurmaController implements IController<FuncionarioTurmaModel, String> {
+[WARNING] ^
+[WARNING] C:\Users\lmbau\Datalake\repos\Faculdade\pi-fatec-3sem-api\src\main\java\com\fatec\srp\models\FuncionarioTurmaModel.java:33: warning: use of default constructor, which does not provide a comment
+[WARNING] public class FuncionarioTurmaModel {
+[WARNING] ^
+[WARNING] C:\Users\lmbau\Datalake\repos\Faculdade\pi-fatec-3sem-api\src\main\java\com\fatec\srp\service\FuncionarioTurmaService.java:30: warning: use of default constructor, which does not provide a comment
+[WARNING] public class FuncionarioTurmaService implements IService<FuncionarioTurmaModel, String> {
+[WARNING] ^
+[WARNING] C:\Users\lmbau\Datalake\repos\Faculdade\pi-fatec-3sem-api\src\main\java\com\fatec\srp\controller\PreRequisitoController.java:32: warning: use of default constructor, which does not provide a comment
+[WARNING] public class PreRequisitoController implements IController<PreRequisitoModel, String> {
+[WARNING] ^
+[WARNING] C:\Users\lmbau\Datalake\repos\Faculdade\pi-fatec-3sem-api\src\main\java\com\fatec\srp\controller\PreRequisitoCursoController.java:32: warning: use of default constructor, which does not provide a comment
+[WARNING] public class PreRequisitoCursoController implements IController<PreRequisitoCursoModel, String> {
+[WARNING] ^
+[WARNING] C:\Users\lmbau\Datalake\repos\Faculdade\pi-fatec-3sem-api\src\main\java\com\fatec\srp\models\PreRequisitoCursoModel.java:28: warning: use of default constructor, which does not provide a comment
+[WARNING] public class PreRequisitoCursoModel {
+[WARNING] ^
+[WARNING] C:\Users\lmbau\Datalake\repos\Faculdade\pi-fatec-3sem-api\src\main\java\com\fatec\srp\service\PreRequisitoCursoService.java:23: warning: use of default constructor, which does not provide a comment
+[WARNING] public class PreRequisitoCursoService implements IService<PreRequisitoCursoModel, String> {
+[WARNING] ^
+[WARNING] C:\Users\lmbau\Datalake\repos\Faculdade\pi-fatec-3sem-api\src\main\java\com\fatec\srp\models\PreRequisitoModel.java:32: warning: use of default constructor, which does not provide a comment
+[WARNING] public class PreRequisitoModel {
+[WARNING] ^
+[WARNING] C:\Users\lmbau\Datalake\repos\Faculdade\pi-fatec-3sem-api\src\main\java\com\fatec\srp\service\PreRequisitoService.java:23: warning: use of default constructor, which does not provide a comment
+[WARNING] public class PreRequisitoService implements IService<PreRequisitoModel, String> {
+[WARNING] ^
+[WARNING] C:\Users\lmbau\Datalake\repos\Faculdade\pi-fatec-3sem-api\src\main\java\com\fatec\srp\controller\ResponseBase.java:21: warning: use of default constructor, which does not provide a comment
+[WARNING] public class ResponseBase<T> {
+[WARNING] ^
+[WARNING] C:\Users\lmbau\Datalake\repos\Faculdade\pi-fatec-3sem-api\src\main\java\com\fatec\srp\SrpApplication.java:30: warning: use of default constructor, which does not provide a comment
+[WARNING] public class SrpApplication {
+[WARNING] ^
+[WARNING] C:\Users\lmbau\Datalake\repos\Faculdade\pi-fatec-3sem-api\src\main\java\com\fatec\srp\controller\TrilhaController.java:32: warning: use of default constructor, which does not provide a comment
+[WARNING] public class TrilhaController implements IController<TrilhaModel, String> {
+[WARNING] ^
+[WARNING] C:\Users\lmbau\Datalake\repos\Faculdade\pi-fatec-3sem-api\src\main\java\com\fatec\srp\models\TrilhaModel.java:32: warning: use of default constructor, which does not provide a comment
+[WARNING] public class TrilhaModel {
+[WARNING] ^
+[WARNING] C:\Users\lmbau\Datalake\repos\Faculdade\pi-fatec-3sem-api\src\main\java\com\fatec\srp\service\TrilhaService.java:23: warning: use of default constructor, which does not provide a comment
+[WARNING] public class TrilhaService implements IService<TrilhaModel, String> {
+[WARNING] ^
+[WARNING] C:\Users\lmbau\Datalake\repos\Faculdade\pi-fatec-3sem-api\src\main\java\com\fatec\srp\controller\TurmaController.java:34: warning: use of default constructor, which does not provide a comment
+[WARNING] public class TurmaController implements IController<TurmaModel, String> {
+[WARNING] ^
+[WARNING] C:\Users\lmbau\Datalake\repos\Faculdade\pi-fatec-3sem-api\src\main\java\com\fatec\srp\models\TurmaModel.java:37: warning: use of default constructor, which does not provide a comment
+[WARNING] public class TurmaModel {
+[WARNING] ^
+[WARNING] C:\Users\lmbau\Datalake\repos\Faculdade\pi-fatec-3sem-api\src\main\java\com\fatec\srp\service\TurmaService.java:24: warning: use of default constructor, which does not provide a comment
+[WARNING] public class TurmaService implements IService<TurmaModel, String> {
+[WARNING] ^
+[WARNING] C:\Users\lmbau\Datalake\repos\Faculdade\pi-fatec-3sem-api\src\main\java\com\fatec\srp\controller\UsuarioController.java:33: warning: use of default constructor, which does not provide a comment
+[WARNING] public class UsuarioController implements IController<UsuarioModel, String> {
+[WARNING] ^
+[WARNING] C:\Users\lmbau\Datalake\repos\Faculdade\pi-fatec-3sem-api\src\main\java\com\fatec\srp\models\UsuarioModel.java:28: warning: use of default constructor, which does not provide a comment
+[WARNING] public class UsuarioModel {
+[WARNING] ^
+[WARNING] C:\Users\lmbau\Datalake\repos\Faculdade\pi-fatec-3sem-api\src\main\java\com\fatec\srp\service\UsuarioService.java:24: warning: use of default constructor, which does not provide a comment
+[WARNING] public class UsuarioService implements IService<UsuarioModel, String> {
+[WARNING] ^
+[WARNING] 45 warnings
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  8.281 s
+[INFO] Finished at: 2024-11-17T19:21:04-03:00
+[INFO] ------------------------------------------------------------------------

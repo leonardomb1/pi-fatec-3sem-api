@@ -19,6 +19,11 @@ import jakarta.persistence.GenerationType;
  * Representa a associação entre cursos e classificações.
  * Esta classe é mapeada para a tabela "Cursos_Classificacoes" no banco de dados e mantém as informações 
  * sobre a relação entre um curso e sua respectiva classificação.
+ * 
+ * Conceitos OOP utilizados:
+ * - **Associação**: A relação entre `CursoClassificacaoModel` e as classes `ClassificacaoModel` e `CursoModel` é de muitos para um, significando que múltiplos cursos podem ter a mesma classificação.
+ * - **Encapsulamento**: A classe encapsula as propriedades da associação entre curso e classificação e oferece métodos para acessar e modificar esses valores de forma segura.
+ * - **Abstração**: A classe abstrai a relação entre os cursos e as classificações, facilitando a manipulação e persistência dos dados relacionados no banco de dados.
  */
 @Getter
 @Setter

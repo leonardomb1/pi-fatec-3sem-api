@@ -19,7 +19,9 @@ import com.fatec.srp.service.AlunoTurmaService;
 
 /**
  * Controlador responsável por gerenciar as operações relacionadas às associações entre alunos e turmas.
- * Este controlador implementa a interface IController e utiliza o AlunoTurmaService para realizar operações CRUD.
+ * <p>
+ * Implementa a interface IController para atender aos princípios de polimorfismo e abstração.
+ * </p>
  */
 @RequestMapping("/api/alunoTurma")
 @RestController
@@ -27,15 +29,21 @@ public class AlunoTurmaController implements IController<AlunoTurmaModel, String
 
     /**
      * Serviço de AlunoTurma injetado automaticamente pelo Spring.
+     * <p>
+     * Promove baixo acoplamento ao delegar as operações de negócio para a classe de serviço.
+     * </p>
      */
     @Autowired
     private AlunoTurmaService alunoTurmaService;
 
     /**
      * Recupera todas as associações entre alunos e turmas.
+     * <p>
+     * Utiliza encapsulamento ao estruturar a resposta em um objeto ResponseBase.
+     * </p>
      * @return ResponseEntity contendo uma lista de AlunoTurmaModel encapsulada em um ResponseBase.
      */
-    @GetMapping 
+    @GetMapping
     public ResponseEntity<ResponseBase<List<AlunoTurmaModel>>> getAll() {
         List<AlunoTurmaModel> lalunoTurma = alunoTurmaService.read();
 
@@ -46,7 +54,7 @@ public class AlunoTurmaController implements IController<AlunoTurmaModel, String
             .status(AppConstants.OK)
             .build();
 
-        if(lalunoTurma == null) {
+        if (lalunoTurma == null) {
             return ResponseEntity.notFound().build();
         } else {
             return ResponseEntity.ok(cBase);
@@ -55,6 +63,9 @@ public class AlunoTurmaController implements IController<AlunoTurmaModel, String
 
     /**
      * Recupera uma associação específica entre aluno e turma pelo ID.
+     * <p>
+     * Implementa reutilização de código ao chamar a lógica de leitura definida no serviço.
+     * </p>
      * @param alunoTurmaId O ID da associação aluno-turma a ser recuperada.
      * @return ResponseEntity contendo um AlunoTurmaModel encapsulado em um ResponseBase.
      */
@@ -69,7 +80,7 @@ public class AlunoTurmaController implements IController<AlunoTurmaModel, String
             .status(AppConstants.OK)
             .build();
 
-        if(alunoTurma == null) {
+        if (alunoTurma == null) {
             return ResponseEntity.notFound().build();
         } else {
             return ResponseEntity.ok(cBase);
@@ -78,6 +89,9 @@ public class AlunoTurmaController implements IController<AlunoTurmaModel, String
 
     /**
      * Cria uma nova associação entre aluno e turma.
+     * <p>
+     * Demonstra abstração ao delegar a lógica de criação para o serviço de negócio.
+     * </p>
      * @param alunoTurma O AlunoTurmaModel contendo os dados da nova associação.
      * @return ResponseEntity contendo o AlunoTurmaModel criado encapsulado em um ResponseBase.
      */
@@ -92,7 +106,7 @@ public class AlunoTurmaController implements IController<AlunoTurmaModel, String
             .status(AppConstants.OK)
             .build();
 
-        if(alunoTurma == null) {
+        if (alunoTurma == null) {
             return ResponseEntity.notFound().build();
         } else {
             return ResponseEntity.ok(cBase);
@@ -101,6 +115,9 @@ public class AlunoTurmaController implements IController<AlunoTurmaModel, String
 
     /**
      * Atualiza uma associação existente entre aluno e turma.
+     * <p>
+     * Aplica polimorfismo ao sobrescrever o contrato da interface para atualizar registros específicos.
+     * </p>
      * @param alunoTurmaId O ID da associação aluno-turma a ser atualizada.
      * @param alunoTurma O AlunoTurmaModel contendo os novos dados da associação.
      * @return ResponseEntity contendo o AlunoTurmaModel atualizado encapsulado em um ResponseBase.
@@ -116,7 +133,7 @@ public class AlunoTurmaController implements IController<AlunoTurmaModel, String
             .status(AppConstants.OK)
             .build();
 
-        if(alunoTurma == null) {
+        if (alunoTurma == null) {
             return ResponseEntity.notFound().build();
         } else {
             return ResponseEntity.ok(cBase);

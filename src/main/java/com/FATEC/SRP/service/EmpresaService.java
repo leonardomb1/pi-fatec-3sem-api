@@ -19,6 +19,12 @@ import java.util.List;
  * 
  * A classe também usa {@link Transactional} para garantir que as operações de atualização e exclusão
  * sejam realizadas de forma atômica e consistentes.
+ *
+ * Conceitos de OOP aplicados:
+ * - **Encapsulamento**: A classe `EmpresaService` encapsula a lógica de manipulação dos dados da empresa, oferecendo uma interface controlada para as operações de CRUD. A lógica de persistência é delegada ao repositório, garantindo que as operações no banco de dados sejam realizadas de forma separada e transparente para o usuário da classe.
+ * - **Responsabilidade Única**: A classe segue o princípio de responsabilidade única, sendo responsável apenas pelas operações de CRUD dos dados da empresa, enquanto o repositório gerencia a persistência dos dados. Isso mantém a coesão da classe e facilita a manutenção do código.
+ * - **Injeção de Dependência**: O repositório `EmpresaRepository` é injetado automaticamente pelo Spring, permitindo que a classe `EmpresaService` utilize suas funcionalidades sem a necessidade de instanciá-lo manualmente.
+ * - **Transações**: A anotação `@Transactional` garante que as operações de CRUD (criação, atualização e exclusão) sejam realizadas dentro de uma transação. Em caso de falha em qualquer uma das operações, a transação é revertida, mantendo a integridade e consistência dos dados no banco.
  */
 @Service
 public class EmpresaService implements IService<EmpresaModel, String> {

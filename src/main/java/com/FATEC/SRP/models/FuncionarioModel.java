@@ -20,6 +20,12 @@ import jakarta.persistence.PreUpdate;
 /**
  * Representa um funcionário no sistema. Esta classe é mapeada para a tabela "Funcionarios" no banco de dados.
  * Contém informações sobre o usuário associado, cargo, e as turmas em que o funcionário está envolvido.
+ * 
+ * Conceitos OOP utilizados:
+ * - **Composição**: A classe `FuncionarioModel` possui uma associação com as classes `UsuarioModel` (um para um), `CargoModel` (muitos para um) e `FuncionarioTurmaModel` (um para muitos), representando a relação de composição entre os objetos.
+ * - **Associação**: A classe estabelece uma relação de um para um com `UsuarioModel`, muitos para um com `CargoModel`, e um para muitos com `FuncionarioTurmaModel`.
+ * - **Encapsulamento**: Os campos como `usuario`, `cargo`, e `funcionarioTurma` são encapsulados, controlando como os dados são acessados e manipulados.
+ * - **Abstração**: A classe abstrai a funcionalidade relacionada ao funcionário no sistema, encapsulando a lógica relacionada a dados de usuários, cargos e turmas, sem expor diretamente sua implementação interna.
  */
 @Getter
 @Setter

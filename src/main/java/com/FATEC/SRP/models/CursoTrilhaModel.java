@@ -18,6 +18,12 @@ import jakarta.persistence.GenerationType;
 /**
  * Representa a associação entre cursos e trilhas no sistema. 
  * Esta classe é mapeada para a tabela "Cursos_Trilhas" no banco de dados.
+ * 
+ * Conceitos OOP utilizados:
+ * - **Composição**: A classe `CursoTrilhaModel` tem uma relação de composição com as classes `TrilhaModel` e `CursoModel`. Ela representa a dependência de um curso com uma trilha específica.
+ * - **Associação**: A classe estabelece relações de muitos para um entre a associação de cursos e trilhas, permitindo que a associação tenha acesso aos dados do curso e da trilha envolvidos.
+ * - **Encapsulamento**: As propriedades como `curso`, `trilha`, e `dtCadastro` são encapsuladas, garantindo que os dados sejam acessados de forma controlada.
+ * - **Abstração**: A classe abstrai a lógica de relacionamento entre cursos e trilhas, oferecendo uma interface simples para interagir com a base de dados sem expor sua implementação interna.
  */
 @Getter
 @Setter

@@ -19,6 +19,11 @@ import jakarta.persistence.GenerationType;
  * Representa o modelo de um cargo dentro de uma organização.
  * Esta classe é mapeada para a tabela "Cargos" no banco de dados e mantém informações sobre os cargos,
  * como nome, nível de permissão e as datas de cadastro e alteração.
+ * 
+ * Conceitos OOP utilizados:
+ * - **Encapsulamento**: A classe `CargoModel` encapsula as propriedades relacionadas a um cargo e permite o acesso a essas propriedades através de getters e setters.
+ * - **Associação**: A relação entre `CargoModel` e `FuncionarioModel` é de um para muitos, onde um cargo pode ser atribuído a muitos funcionários.
+ * - **Abstração**: A classe abstrai os detalhes da implementação dos cargos em uma organização e oferece um modelo para os dados que serão armazenados no banco de dados.
  */
 @Getter
 @Setter

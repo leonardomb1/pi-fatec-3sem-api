@@ -19,6 +19,12 @@ import java.util.List;
  * 
  * A classe também usa {@link Transactional} para garantir que as operações de atualização e exclusão
  * sejam realizadas de forma atômica e consistentes.
+ *
+ * Conceitos de OOP aplicados:
+ * - **Encapsulamento**: A classe `CursoTrilhaService` encapsula a lógica de manipulação das associações entre cursos e trilhas, fornecendo métodos claros e controlados para as operações de CRUD. A camada de persistência é separada, permitindo que a classe foque apenas nas operações de negócios.
+ * - **Responsabilidade Única**: Seguindo o princípio de responsabilidade única, a classe `CursoTrilhaService` lida exclusivamente com a lógica de negócio das associações entre cursos e trilhas, deixando a manipulação direta do banco de dados para o repositório `CursoTrilhaRepository`.
+ * - **Injeção de Dependência**: O repositório `CursoTrilhaRepository` é injetado automaticamente pelo Spring, permitindo que a classe `CursoTrilhaService` utilize sua funcionalidade de persistência sem a necessidade de criar ou gerenciar instâncias diretamente.
+ * - **Transações**: A anotação `@Transactional` garante que as operações de criação, atualização e exclusão sejam realizadas dentro de uma transação. Caso ocorra algum erro, todas as alterações são revertidas, garantindo a consistência do banco de dados.
  */
 @Service
 public class CursoTrilhaService implements IService<CursoTrilhaModel, String> {

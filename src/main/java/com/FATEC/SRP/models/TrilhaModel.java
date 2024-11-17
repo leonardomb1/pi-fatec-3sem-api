@@ -18,6 +18,12 @@ import jakarta.persistence.GenerationType;
 /**
  * Representa uma trilha de aprendizado no sistema, contendo informações sobre o nome e descrição da trilha.
  * Esta classe é mapeada para a tabela "Trilhas" no banco de dados.
+ * 
+ * Conceitos OOP utilizados:
+ * - **Encapsulamento**: Os campos como `nomeTrilha`, `descTrilha` e as listas de cursos estão encapsulados, garantindo que o acesso e modificação sejam controlados.
+ * - **Associação**: A classe possui uma associação de um para muitos com `CursoTrilhaModel`, indicando que uma trilha pode estar associada a vários cursos.
+ * - **Abstração**: A classe abstrai as informações sobre a trilha e seus cursos, permitindo que o sistema manipule esses dados de forma simplificada sem expor a implementação interna.
+ * - **Modificação de Estado**: A classe possui métodos que alteram o estado do objeto, como as datas de cadastro e alteração, que são automaticamente configuradas no momento de persistência e atualização.
  */
 @Getter
 @Setter

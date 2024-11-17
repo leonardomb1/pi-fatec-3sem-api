@@ -20,6 +20,11 @@ import jakarta.persistence.PreUpdate;
  * Representa a associação entre um aluno e uma turma. 
  * Esta classe é mapeada para a tabela "Aluno_Turmas" no banco de dados e mantém o controle de 
  * a relação entre alunos e suas turmas, incluindo o status de conclusão e as datas de cadastro e alteração.
+ * 
+ * Conceitos OOP utilizados:
+ * - **Associação**: A relação entre a classe `AlunoTurmaModel`, `AlunoModel` e `TurmaModel` é um exemplo de associação de muitos para um.
+ * - **Encapsulamento**: A classe encapsula todas as propriedades e comportamentos relacionados à associação entre aluno e turma.
+ * - **Abstração**: A classe abstrai os detalhes da implementação de banco de dados ao representar a associação entre aluno e turma de forma lógica.
  */
 @Getter
 @Setter

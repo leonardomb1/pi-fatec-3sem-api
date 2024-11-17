@@ -19,6 +19,12 @@ import java.util.List;
  * 
  * A classe também usa {@link Transactional} para garantir que as operações de atualização e exclusão
  * sejam realizadas de forma atômica e consistentes.
+ *
+ * Conceitos de OOP aplicados:
+ * - **Encapsulamento**: A classe `AlunoService` encapsula as operações de persistência e lógica de negócios, expondo métodos simples para interagir com a base de dados.
+ * - **Responsabilidade Única**: A classe segue o princípio de responsabilidade única, pois é responsável exclusivamente por realizar operações relacionadas aos alunos.
+ * - **Injeção de Dependência**: O repositório `AlunoRepository` é injetado automaticamente, promovendo a separação de responsabilidades e facilitando a manutenção.
+ * - **Transações**: A anotação `@Transactional` garante que as operações de criação, atualização e exclusão sejam atômicas, ou seja, ou todas as alterações são aplicadas com sucesso ou, em caso de erro, nenhuma alteração é realizada.
  */
 @Service
 public class AlunoService implements IService<AlunoModel, String> {

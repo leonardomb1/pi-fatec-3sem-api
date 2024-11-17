@@ -14,6 +14,12 @@ import lombok.Setter;
 /**
  * Representa a associação entre um curso e seus pré-requisitos. Esta classe é mapeada para a tabela "prerequisito_curso" no banco de dados.
  * Contém informações sobre os cursos e os pré-requisitos necessários para a realização dos cursos.
+ * 
+ * Conceitos OOP utilizados:
+ * - **Associação**: A classe estabelece uma relação de muitos para um com `PreRequisitoModel` e `CursoModel`.
+ * - **Composição**: Cada pré-requisito é parte do curso, mas pode ser reutilizado por vários cursos.
+ * - **Encapsulamento**: Os campos como `preRequisito` e `curso` são encapsulados, controlando o acesso a essas propriedades.
+ * - **Abstração**: A classe esconde a complexidade dos detalhes de implementação e oferece uma interface simplificada para manipular os pré-requisitos de cursos.
  */
 @Getter
 @Setter

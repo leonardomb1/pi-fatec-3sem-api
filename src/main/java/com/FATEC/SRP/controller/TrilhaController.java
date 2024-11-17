@@ -21,6 +21,11 @@ import com.fatec.srp.service.TrilhaService;
  * Controlador para gerenciar as trilhas de aprendizado.
  * Esta classe implementa os métodos de CRUD para as trilhas, permitindo operações
  * de criação, leitura e atualização de trilhas através da API.
+ *
+ * Conceitos de OOP:
+ * - **Encapsulamento**: A classe oculta os detalhes da implementação dos serviços relacionados a trilhas e fornece uma interface clara para a interação com a API.
+ * - **Injeção de Dependência**: O serviço `TrilhaService` é injetado na classe para fornecer acesso à lógica de negócios, promovendo a separação de responsabilidades.
+ * - **Padrão de Projeto MVC**: A classe segue o padrão MVC (Model-View-Controller), sendo responsável pela parte de *Controller* da aplicação, enquanto delega a lógica de negócios para o serviço.
  */
 @RequestMapping("/api/trilha")
 @RestController

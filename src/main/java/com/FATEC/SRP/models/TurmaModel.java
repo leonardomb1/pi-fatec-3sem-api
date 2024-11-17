@@ -22,6 +22,13 @@ import jakarta.persistence.GenerationType;
 /**
  * Representa uma turma no sistema, associada a um curso e com informações sobre a data de início, término e período.
  * Esta classe é mapeada para a tabela "Turmas" no banco de dados.
+ * 
+ * Conceitos OOP utilizados:
+ * - **Associação**: A classe possui vários relacionamentos de um para muitos com as classes `FuncionarioTurmaModel` e `AlunoTurmaModel`, indicando que uma turma pode ter vários funcionários e alunos associados.
+ * - **Composição**: A turma tem um relacionamento de muitos para um com a classe `CursoModel`, sendo que uma turma pertence a um curso específico.
+ * - **Encapsulamento**: Os campos como `dataInicio`, `dataFim`, `periodo`, entre outros, estão encapsulados, garantindo controle sobre o acesso e a modificação de seus valores.
+ * - **Abstração**: A classe abstrai os detalhes sobre a turma e suas associações, permitindo que os dados sejam manipulados de forma simplificada sem expor detalhes de implementação.
+ * - **Modificação de Estado**: A classe possui métodos que alteram o estado do objeto, como as datas de cadastro e alteração, que são automaticamente configuradas no momento de persistência e atualização.
  */
 @Getter
 @Setter

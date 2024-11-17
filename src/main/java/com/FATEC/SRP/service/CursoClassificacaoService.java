@@ -19,6 +19,12 @@ import java.util.List;
  * 
  * A classe também usa {@link Transactional} para garantir que as operações de atualização e exclusão
  * sejam realizadas de forma atômica e consistentes.
+ *
+ * Conceitos de OOP aplicados:
+ * - **Encapsulamento**: A classe `CursoClassificacaoService` encapsula as operações relacionadas aos registros de cursos e classificações, garantindo que as interações com o banco de dados sejam feitas de maneira controlada.
+ * - **Responsabilidade Única**: A classe segue o princípio de responsabilidade única, oferecendo uma única camada para a lógica de negócios relacionada ao CRUD dos registros de cursos e classificações.
+ * - **Injeção de Dependência**: O repositório `CursoClassificacaoRepository` é injetado automaticamente pelo Spring, permitindo que a classe `CursoClassificacaoService` se concentre na lógica de negócio, enquanto o repositório lida com a persistência de dados.
+ * - **Transações**: A anotação `@Transactional` garante que as operações de criação, atualização e exclusão de dados sejam realizadas dentro de uma transação, o que assegura a consistência e a integridade dos dados.
  */
 @Service
 public class CursoClassificacaoService implements IService<CursoClassificacaoModel, String> {

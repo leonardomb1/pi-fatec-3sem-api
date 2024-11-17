@@ -19,6 +19,12 @@ import java.util.List;
  * 
  * A classe também usa {@link Transactional} para garantir que as operações de atualização e exclusão
  * sejam realizadas de forma atômica e consistentes.
+ *
+ * Conceitos de OOP aplicados:
+ * - **Encapsulamento**: A classe `AlunoTurmaService` encapsula as operações relacionadas à matrícula de alunos em turmas, tornando essas operações simples de usar e integrando a lógica de negócio.
+ * - **Responsabilidade Única**: A classe segue o princípio de responsabilidade única, sendo responsável exclusivamente pelas operações de matrícula de alunos em turmas.
+ * - **Injeção de Dependência**: O repositório `AlunoTurmaRepository` é injetado automaticamente, promovendo a separação de responsabilidades e facilitando a manutenção do código.
+ * - **Transações**: A anotação `@Transactional` garante que as operações de criação, atualização e exclusão sejam atômicas, garantindo que as transações sejam consistentes.
  */
 @Service
 public class AlunoTurmaService implements IService<AlunoTurmaModel, String> {

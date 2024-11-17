@@ -19,6 +19,11 @@ import jakarta.persistence.GenerationType;
  * Representa a classificação de um curso ou outro tipo de conteúdo dentro de uma organização.
  * Esta classe é mapeada para a tabela "Classificacoes" no banco de dados e mantém informações sobre as classificações,
  * como o nome da classificação e as datas de cadastro e alteração.
+ * 
+ * Conceitos OOP utilizados:
+ * - **Encapsulamento**: A classe `ClassificacaoModel` encapsula as propriedades relacionadas a uma classificação e oferece métodos para acessar e modificar esses valores de forma segura.
+ * - **Associação**: A relação entre `ClassificacaoModel` e `CursoClassificacaoModel` é de um para muitos, ou seja, uma classificação pode estar associada a múltiplos cursos.
+ * - **Abstração**: A classe abstrai a representação de uma classificação dentro da organização, deixando os detalhes da implementação da persistência de dados no banco de dados para o Hibernate.
  */
 @Getter
 @Setter

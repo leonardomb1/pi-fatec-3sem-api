@@ -17,25 +17,34 @@ import com.fatec.srp.common.AppConstants;
 import com.fatec.srp.models.ClassificacaoModel;
 import com.fatec.srp.service.ClassificacaoService;
 
-
 /**
  * Controlador responsável por gerenciar as operações relacionadas às classificações.
- * Este controlador implementa a interface IController e utiliza o ClassificacaoService para realizar operações CRUD.
+ * <p>
+ * Implementa a interface IController para promover abstração e reutilização de código. 
+ * Encapsula as regras de negócio no serviço ClassificacaoService, promovendo baixo acoplamento e separação de responsabilidades.
+ * </p>
  */
 @RequestMapping("/api/classificacao")
 @RestController
 public class ClassificacaoController implements IController<ClassificacaoModel, String> {
-    
+
     /**
      * Serviço de Classificação injetado automaticamente pelo Spring.
+     * <p>
+     * O uso de injeção de dependência (Dependency Injection) favorece a inversão de controle e facilita a testabilidade.
+     * </p>
      */
     @Autowired
     private ClassificacaoService classificacaoService;
+
     /**
      * Recupera todas as classificações.
+     * <p>
+     * Aplica abstração ao encapsular a lógica de negócio no serviço e utiliza encapsulamento para organizar a resposta no objeto ResponseBase.
+     * </p>
      * @return ResponseEntity contendo uma lista de ClassificacaoModel encapsulada em um ResponseBase.
      */
-    @GetMapping 
+    @GetMapping
     public ResponseEntity<ResponseBase<List<ClassificacaoModel>>> getAll() {
         List<ClassificacaoModel> lclassificacao = classificacaoService.read();
 
@@ -46,14 +55,18 @@ public class ClassificacaoController implements IController<ClassificacaoModel, 
             .status(AppConstants.OK)
             .build();
 
-        if(lclassificacao == null) {
+        if (lclassificacao == null) {
             return ResponseEntity.notFound().build();
         } else {
             return ResponseEntity.ok(cBase);
         }
     }
+
     /**
      * Recupera uma classificação específica pelo ID.
+     * <p>
+     * Implementa polimorfismo ao sobrescrever o método definido na interface IController.
+     * </p>
      * @param classificacaoId O ID da classificação a ser recuperada.
      * @return ResponseEntity contendo um ClassificacaoModel encapsulado em um ResponseBase.
      */
@@ -68,14 +81,18 @@ public class ClassificacaoController implements IController<ClassificacaoModel, 
             .status(AppConstants.OK)
             .build();
 
-        if(classificacao == null) {
+        if (classificacao == null) {
             return ResponseEntity.notFound().build();
         } else {
             return ResponseEntity.ok(cBase);
         }
     }
+
     /**
      * Cria uma nova classificação.
+     * <p>
+     * Aplica o princípio de encapsulamento ao organizar os dados no modelo ClassificacaoModel e delega a lógica de persistência ao serviço.
+     * </p>
      * @param classificacao O ClassificacaoModel contendo os dados da nova classificação.
      * @return ResponseEntity contendo o ClassificacaoModel criado encapsulado em um ResponseBase.
      */
@@ -90,7 +107,7 @@ public class ClassificacaoController implements IController<ClassificacaoModel, 
             .status(AppConstants.OK)
             .build();
 
-        if(classificacao == null) {
+        if (classificacao == null) {
             return ResponseEntity.notFound().build();
         } else {
             return ResponseEntity.ok(cBase);
@@ -99,6 +116,9 @@ public class ClassificacaoController implements IController<ClassificacaoModel, 
 
     /**
      * Atualiza uma classificação existente.
+     * <p>
+     * Aplica o princípio de abstração e reutilização ao delegar a lógica de atualização para o serviço ClassificacaoService.
+     * </p>
      * @param classificacaoId O ID da classificação a ser atualizada.
      * @param classificacao O ClassificacaoModel contendo os novos dados da classificação.
      * @return ResponseEntity contendo o ClassificacaoModel atualizado encapsulado em um ResponseBase.
@@ -114,7 +134,7 @@ public class ClassificacaoController implements IController<ClassificacaoModel, 
             .status(AppConstants.OK)
             .build();
 
-        if(classificacao == null) {
+        if (uclassificacao == null) {
             return ResponseEntity.notFound().build();
         } else {
             return ResponseEntity.ok(cBase);

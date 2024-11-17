@@ -19,6 +19,12 @@ import jakarta.persistence.GenerationType;
  * Representa um curso na aplicação. 
  * Esta classe é mapeada para a tabela "Cursos" no banco de dados e mantém as informações sobre um curso,
  * incluindo suas turmas, classificações, requisitos e trilhas associadas.
+ * 
+ * Conceitos OOP utilizados:
+ * - **Composição**: A classe `CursoModel` possui uma relação de composição com outras entidades como `TurmaModel`, `CursoClassificacaoModel`, `PreRequisitoCursoModel`, e `CursoTrilhaModel`, que representam diferentes aspectos de um curso.
+ * - **Associação**: A classe estabelece relações de um para muitos com as outras entidades, representando a dependência e interatividade entre um curso e seus componentes.
+ * - **Encapsulamento**: As propriedades dos cursos, como nome, descrição, e datas, são encapsuladas, fornecendo acesso controlado e protegido aos dados.
+ * - **Abstração**: A classe abstrai os detalhes do banco de dados, permitindo que um curso seja manipulado de maneira intuitiva no código, sem necessidade de lidar diretamente com a persistência de dados.
  */
 @Getter
 @Setter

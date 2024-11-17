@@ -19,6 +19,12 @@ import java.util.List;
  * 
  * A classe também usa {@link Transactional} para garantir que as operações de atualização e exclusão
  * sejam realizadas de forma atômica e consistentes.
+ *
+ * Conceitos de OOP aplicados:
+ * - **Encapsulamento**: A classe `CursosService` encapsula a lógica de manipulação de cursos, fornecendo métodos claros e controlados para as operações de CRUD, o que garante que a lógica de negócios seja separada da camada de persistência.
+ * - **Responsabilidade Única**: A classe segue o princípio de responsabilidade única, sendo responsável exclusivamente pela lógica de negócios relacionada aos cursos. Isso facilita a manutenção e o teste da aplicação.
+ * - **Injeção de Dependência**: O repositório `CursosRepository` é injetado automaticamente pelo Spring, o que permite que a classe `CursosService` se concentre na lógica de negócios, sem se preocupar diretamente com a implementação da persistência de dados.
+ * - **Transações**: A anotação `@Transactional` garante que as operações de criação, atualização e exclusão de registros de cursos sejam realizadas dentro de uma transação, assegurando que as mudanças no banco de dados sejam atômicas e consistentes.
  */
 @Service
 public class CursosService implements IService<CursoModel, String> {

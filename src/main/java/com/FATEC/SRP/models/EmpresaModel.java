@@ -19,6 +19,12 @@ import jakarta.persistence.GenerationType;
  * Representa uma empresa no sistema. Esta classe é mapeada para a tabela "Empresas" no banco de dados.
  * Contém informações sobre a empresa, como razão social, nome fantasia, CNPJ, e dados bancários, 
  * além de um relacionamento com os alunos associados a ela.
+ * 
+ * Conceitos OOP utilizados:
+ * - **Composição**: A classe `EmpresaModel` possui uma lista de objetos `AlunoModel`, representando a relação de composição entre empresa e alunos.
+ * - **Associação**: A classe estabelece uma relação de um para muitos entre `EmpresaModel` e `AlunoModel`, permitindo que a empresa esteja associada a vários alunos.
+ * - **Encapsulamento**: Os campos como `razaoSocial`, `cnpj`, e `endereco` são encapsulados, permitindo o controle sobre como esses dados são acessados e modificados.
+ * - **Abstração**: A classe abstrai a representação dos dados de uma empresa, incluindo dados fiscais e bancários, de forma que esses dados possam ser manipulados sem expor diretamente sua implementação interna.
  */
 @Getter
 @Setter
