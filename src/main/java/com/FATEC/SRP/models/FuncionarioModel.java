@@ -17,38 +17,64 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 
-
+/**
+ * Representa um funcionário no sistema. Esta classe é mapeada para a tabela "Funcionarios" no banco de dados.
+ * Contém informações sobre o usuário associado, cargo, e as turmas em que o funcionário está envolvido.
+ */
 @Getter
 @Setter
 @Entity
 @Table(name="Funcionarios")
 public class FuncionarioModel {
     
+    /**
+     * Usuário associado ao funcionário. Relacionamento de um para um com a classe `UsuarioModel`.
+     */
     @Id
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "nome_usuario", referencedColumnName = "nome_usuario")
     private UsuarioModel usuario;
 
+    /**
+     * Cargo do funcionário. Relacionamento de muitos para um com a classe `CargoModel`.
+     */
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_cargo", referencedColumnName = "id")
     private CargoModel cargo;
 
+    /**
+     * Lista de turmas associadas ao funcionário. Relacionamento de um para muitos com a classe `FuncionarioTurmaModel`.
+     */
     @OneToMany(mappedBy = "funcionario")
     private List<FuncionarioTurmaModel> funcionarioTurma;
 
+    /**
+     * Data de cadastro do funcionário. Este campo não pode ser alterado após a persistência.
+     */
     @Column(name = "dt_cadastro", updatable = false)
     private LocalDateTime dtCadastro;
 
+    /**
+     * Data da última alteração dos dados do funcionário.
+     */
     @Column(name = "dt_alteracao")
     private LocalDateTime dtAlteracao;
 
+    /**
+     * Método chamado automaticamente antes da persistência do funcionário.
+     * Atribui a data e hora atuais ao campo `dtCadastro`.
+     */
     @PrePersist
     protected void onCreate() {
         dtCadastro = LocalDateTime.now();
     }
 
+    /**
+     * Método chamado automaticamente antes da atualização dos dados do funcionário.
+     * Atribui a data e hora atuais ao campo `dtAlteracao`.
+     */
     @PreUpdate
     protected void onUpdate() {
         dtAlteracao = LocalDateTime.now();
     }
-} 
+}

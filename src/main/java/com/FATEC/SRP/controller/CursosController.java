@@ -17,13 +17,25 @@ import com.fatec.srp.common.AppConstants;
 import com.fatec.srp.models.CursoModel;
 import com.fatec.srp.service.CursosService;
 
+/**
+ * Controlador responsável por gerenciar as operações relacionadas aos cursos.
+ * Este controlador implementa a interface IController e utiliza o CursosService para realizar operações CRUD.
+ */
 @RequestMapping("/api/curso")
 @RestController
 public class CursosController implements IController<CursoModel, String> {
     
+    /**
+     * Serviço de Cursos injetado automaticamente pelo Spring.
+     */
     @Autowired
     private CursosService cursosService;
     
+
+    /**
+     * Recupera todos os cursos.
+     * @return ResponseEntity contendo uma lista de CursoModel encapsulada em um ResponseBase.
+     */
     @GetMapping 
     public ResponseEntity<ResponseBase<List<CursoModel>>> getAll() {
         List<CursoModel> lCursos = cursosService.read();
@@ -42,6 +54,11 @@ public class CursosController implements IController<CursoModel, String> {
         }
     }
 
+    /**
+     * Recupera um curso específico pelo ID.
+     * @param cursoId O ID do curso a ser recuperado.
+     * @return ResponseEntity contendo um CursoModel encapsulado em um ResponseBase.
+     */
     @GetMapping("/{cursoId}")
     public ResponseEntity<ResponseBase<CursoModel>> getById(@PathVariable String cursoId) {
         CursoModel curso = cursosService.read(cursoId);
@@ -60,6 +77,11 @@ public class CursosController implements IController<CursoModel, String> {
         }
     }
 
+    /**
+     * Cria um novo curso.
+     * @param curso O CursoModel contendo os dados do novo curso.
+     * @return ResponseEntity contendo o CursoModel criado encapsulado em um ResponseBase.
+     */
     @PostMapping
     public ResponseEntity<ResponseBase<CursoModel>> getBody(@RequestBody CursoModel curso) {
         cursosService.create(curso);
@@ -78,6 +100,12 @@ public class CursosController implements IController<CursoModel, String> {
         }
     }
 
+    /**
+     * Atualiza um curso existente.
+     * @param cursoId O ID do curso a ser atualizado.
+     * @param curso O CursoModel contendo os novos dados do curso.
+     * @return ResponseEntity contendo o CursoModel atualizado encapsulado em um ResponseBase.
+     */
     @PutMapping("/{cursoId}")
     public ResponseEntity<ResponseBase<CursoModel>> update(@PathVariable String cursoId, @RequestBody CursoModel curso) {
         CursoModel ucurso = cursosService.update(cursoId, curso);
