@@ -1,90 +1,75 @@
 package com.fatec.srp.models;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
-
 import java.time.LocalDateTime;
+import java.util.List;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 
 /**
- * Classe que representa o modelo de Pré-Requisito.
- * Utiliza anotações do Lombok para geração automática de getters, setters, construtores e builder.
- * Utiliza anotações do JPA para mapeamento da entidade e suas colunas no banco de dados.
+ * Representa os pré-requisitos para cursos no sistema. Esta classe é mapeada para a tabela "Prerequisitos" no banco de dados.
+ * Contém informações sobre os pré-requisitos, como nome, descrição, e as relações com os cursos que os utilizam.
  * 
- * <p>Conceitos de POO utilizados:
- * <ul>
- *   <li>Encapsulamento: Atributos privados com acesso através de getters e setters.</li>
- *   <li>Abstração: Representação de um pré-requisito com atributos e comportamentos específicos.</li>
- *   <li>Construtores: Construtores gerados automaticamente pelo Lombok.</li>
- *   <li>Builder: Padrão de projeto Builder para facilitar a criação de instâncias da classe.</li>
- * </ul>
- * </p>
+ * Conceitos OOP utilizados:
+ * - **Associação**: A classe possui uma associação de um para muitos com `PreRequisitoCursoModel`, indicando que um pré-requisito pode ser utilizado em vários cursos.
+ * - **Encapsulamento**: Os campos como `nomePrerequisito`, `descPrerequisito` e as listas de cursos estão encapsulados, garantindo que o acesso e modificação sejam controlados.
+ * - **Abstração**: A classe abstrai os detalhes dos pré-requisitos e suas relações com os cursos, permitindo que esses dados sejam manipulados de forma simplificada.
+ * - **Modificação de Estado**: A classe tem métodos que alteram o estado do objeto, como as datas de cadastro e alteração, automaticamente configuradas no momento de persistência.
  */
 @Getter
 @Setter
-@AllArgsConstructor
-@Builder
-@NoArgsConstructor
 @Entity
-@Table(name = "pre_requisitos")
+@Table(name="Prerequisitos")
 public class PreRequisitoModel {
-
-    static final String TABLE_NAME = "pre_requisitos";
-
+    
     /**
      * Identificador único do pré-requisito.
-     * Gerado automaticamente pelo banco de dados.
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", unique = true, nullable = false)
     private Long id;
-
+    
     /**
-     * Título do pré-requisito.
-     * Deve ter entre 5 e 40 caracteres.
-     * É obrigatório.
+     * Lista de associações entre pré-requisitos e cursos. Relacionamento de um para muitos com a classe `PreRequisitoCursoModel`.
      */
-    @NotEmpty(message = "Titulo é obrigatório")
-    @Column(name = "titulo", length = 40, nullable = true)
-    @Size(min = 5, max = 40)
-    private String titulo;
+    @OneToMany(mappedBy = "preRequisito")
+    private List<PreRequisitoCursoModel> preRequisitoCurso;
 
     /**
-     * Descrição do pré-requisito.
-     * Deve ter entre 5 e 100 caracteres.
-     * É obrigatória.
+     * Nome do pré-requisito.
      */
-    @NotEmpty(message = "Descrição é obrigatória")
-    @Column(name = "descricao", length = 100, nullable = true)
-    @Size(min = 5, max = 100)
-    private String descricao;
+    @Column(name = "nome_prerequisito", nullable = false, length = 30)
+    private String nomePrerequisito;
 
     /**
-     * Data de cadastro do pré-requisito.
-     * Preenchida automaticamente na criação do registro.
+     * Descrição detalhada do pré-requisito.
+     */
+    @Column(name = "desc_prerequisito", nullable = false, length = 100)
+    private String descPrerequisito;
+
+    /**
+     * Data de cadastro do pré-requisito. Não pode ser alterada após o cadastro.
      */
     @Column(name = "dt_cadastro", updatable = false)
     private LocalDateTime dtCadastro;
 
     /**
-     * Data de alteração do pré-requisito.
-     * Atualizada automaticamente na modificação do registro.
+     * Data da última alteração do pré-requisito.
      */
     @Column(name = "dt_alteracao")
     private LocalDateTime dtAlteracao;
 
     /**
-     * Método executado antes de persistir um novo registro.
-     * Define a data de cadastro como a data e hora atual.
-     * 
-     * @PrePersist Indica que o método deve ser executado antes de persistir o registro.
+     * Método que é chamado antes de persistir o objeto, definindo a data de cadastro.
      */
     @PrePersist
     protected void onCreate() {
@@ -92,10 +77,7 @@ public class PreRequisitoModel {
     }
 
     /**
-     * Método executado antes de atualizar um registro existente.
-     * Define a data de alteração como a data e hora atual.
-     * 
-     * @PreUpdate Indica que o método deve ser executado antes de atualizar o registro.
+     * Método que é chamado antes de atualizar o objeto, definindo a data da alteração.
      */
     @PreUpdate
     protected void onUpdate() {

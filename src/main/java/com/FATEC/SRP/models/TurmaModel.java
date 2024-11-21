@@ -1,37 +1,39 @@
 package com.fatec.srp.models;
 
-import jakarta.persistence.*;
-
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
+import java.sql.Date;
 import java.time.LocalDateTime;
-import java.util.Date;
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 
 /**
- * A classe TurmaModel representa uma entidade de turma no sistema.
- * Utiliza anotações do JPA para mapeamento objeto-relacional.
+ * Representa uma turma no sistema, associada a um curso e com informações sobre a data de início, término e período.
+ * Esta classe é mapeada para a tabela "Turmas" no banco de dados.
  * 
- * <p>Esta classe demonstra o uso de conceitos de POO como encapsulamento,
- * através do uso de getters e setters, e construção de objetos com o padrão
- * Builder.</p>
- * 
- * <p>As anotações Lombok (@Getter, @Setter, @AllArgsConstructor, @Builder, @NoArgsConstructor)
- * são usadas para reduzir o código boilerplate.</p>
- * 
- * <p>A anotação @Entity indica que esta classe é uma entidade JPA.</p>
- * <p>A anotação @Table especifica a tabela correspondente no banco de dados.</p>
+ * Conceitos OOP utilizados:
+ * - **Associação**: A classe possui vários relacionamentos de um para muitos com as classes `FuncionarioTurmaModel` e `AlunoTurmaModel`, indicando que uma turma pode ter vários funcionários e alunos associados.
+ * - **Composição**: A turma tem um relacionamento de muitos para um com a classe `CursoModel`, sendo que uma turma pertence a um curso específico.
+ * - **Encapsulamento**: Os campos como `dataInicio`, `dataFim`, `periodo`, entre outros, estão encapsulados, garantindo controle sobre o acesso e a modificação de seus valores.
+ * - **Abstração**: A classe abstrai os detalhes sobre a turma e suas associações, permitindo que os dados sejam manipulados de forma simplificada sem expor detalhes de implementação.
+ * - **Modificação de Estado**: A classe possui métodos que alteram o estado do objeto, como as datas de cadastro e alteração, que são automaticamente configuradas no momento de persistência e atualização.
  */
 @Getter
 @Setter
-@AllArgsConstructor
-@Builder
-@NoArgsConstructor
 @Entity
-@Table(name = "turmas")
+@Table(name="Turmas")
 public class TurmaModel {
 
     /**
@@ -40,43 +42,61 @@ public class TurmaModel {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idTurma;
+    private Long id;
 
     /**
-     * Identificador do curso ao qual a turma pertence.
-     * Não pode ser nulo.
+     * Curso associado à turma. Relacionamento de muitos para um com a classe `CursoModel`.
      */
-    @Column(name = "id_curso", nullable = false)
-    private Integer idCurso;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_curso", referencedColumnName = "id")
+    private CursoModel curso;
 
     /**
      * Data de início da turma.
      * Não pode ser nula.
      */
     @Column(name = "data_inicio", nullable = false)
-    @Temporal(TemporalType.DATE)
     private Date dataInicio;
 
     /**
      * Data de término da turma.
      * Pode ser nula.
      */
-    @Column(name = "data_fim")
-    @Temporal(TemporalType.DATE)
+    @Column(name = "data_fim", nullable = false)
     private Date dataFim;
 
     /**
-     * Período da turma (ex: manhã, tarde, noite).
-     * Não pode ser nulo.
+     * Período em que a turma ocorre (ex: "Manhã", "Tarde", "Noite").
      */
-    @Column(name = "periodo", nullable = false)
+    @Column(name = "periodo", nullable = false, length = 15)
     private String periodo;
 
     /**
-     * Método executado antes de persistir um novo registro.
-     * Define a data de cadastro como a data e hora atual.
-     * 
-     * @PrePersist Indica que o método deve ser executado antes de persistir o registro.
+     * Data de cadastro da turma. Não pode ser alterada após o cadastro.
+     */
+    @Column(name = "dt_cadastro", updatable = false)
+    private LocalDateTime dtCadastro;
+
+    /**
+     * Lista de associações entre funcionários e turmas. Relacionamento de um para muitos com a classe `FuncionarioTurmaModel`.
+     */
+    @OneToMany(mappedBy = "turma")
+    private List<FuncionarioTurmaModel> funcionarioTurma;
+
+    /**
+     * Data da última alteração na turma.
+     */
+    @Column(name = "dt_alteracao")
+    private LocalDateTime dtAlteracao;
+
+    /**
+     * Lista de associações entre alunos e turmas. Relacionamento de um para muitos com a classe `AlunoTurmaModel`.
+     */
+    @OneToMany(mappedBy = "turma")
+    private List<AlunoTurmaModel> alunoTurma;
+
+    /**
+     * Método que é chamado antes de persistir o objeto, definindo a data de cadastro.
      */
     @PrePersist
     protected void onCreate() {
@@ -84,10 +104,7 @@ public class TurmaModel {
     }
 
     /**
-     * Método executado antes de atualizar um registro existente.
-     * Define a data de alteração como a data e hora atual.
-     * 
-     * @PreUpdate Indica que o método deve ser executado antes de atualizar o registro.
+     * Método que é chamado antes de atualizar o objeto, definindo a data da alteração.
      */
     @PreUpdate
     protected void onUpdate() {

@@ -5,38 +5,45 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * Classe genérica que representa uma resposta base para as requisições da API.
+ * Classe que representa a estrutura de uma resposta genérica para a API.
+ * Contém informações sobre o status da operação, mensagem de erro e dados de resposta.
+ *
+ * @param <T> Tipo de dado que será incluído na mensagem de resposta.
  * 
- * @param <T> O tipo da mensagem que será retornada na resposta.
- * 
- * <p>Conceitos de POO utilizados:
- * <ul>
- *   <li>Encapsulamento: Atributos privados com acesso através de getters e setters.</li>
- *   <li>Generics: Permite que a classe trabalhe com qualquer tipo de dado, especificado no momento da instanciação.</li>
- * </ul>
- * </p>
+ * Conceitos de OOP:
+ * - **Generics**: A classe é genérica, utilizando o parâmetro de tipo `T`, permitindo que qualquer tipo de dado seja incluído na mensagem de resposta, proporcionando flexibilidade e reutilização do código.
+ * - **Encapsulamento**: A classe encapsula todas as informações necessárias para representar uma resposta de API, como status, erro, e dados. Ela oculta a complexidade dos detalhes de resposta e fornece uma interface simples.
+ * - **Builder Pattern**: Usando o padrão de design *Builder*, a classe permite a criação flexível de objetos complexos de forma fluida, sem a necessidade de definir um construtor com muitos parâmetros.
  */
 @Setter
 @Getter
 @Builder
 public class ResponseBase<T> {
+    
     /**
-     * Informação adicional sobre a resposta.
+     * Mensagem informativa sobre o status da operação.
      */
     private String info;
-    
+
     /**
-     * Indica se houve um erro na requisição.
+     * Indica se ocorreu um erro durante a operação.
+     * 
+     * @return true se houver erro, caso contrário false.
      */
     private boolean error;
-    
+
     /**
-     * Código de status HTTP da resposta.
+     * Código de status HTTP da operação realizada.
+     * 
+     * @return Código numérico de status, como 200 para sucesso, 404 para não encontrado, etc.
      */
     private int status;
-    
+
     /**
-     * Mensagem de resposta, cujo tipo é definido pela classe que utiliza ResponseBase.
+     * Mensagem ou dados relacionados ao resultado da operação.
+     * 
+     * @param <T> Tipo de dado que será retornado (por exemplo, um objeto ou lista de objetos).
+     * @return A mensagem de resposta ou dados relevantes da operação.
      */
     private T message;
 }

@@ -4,45 +4,54 @@ import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 
-
 /**
- * Interface IController que define operações CRUD básicas para um tipo genérico T e um identificador ID.
- * Utiliza conceitos de Programação Orientada a Objetos (POO) como Generics e Interfaces.
- *
- * @param <T>  O tipo da entidade que será manipulada pelo controlador.
- * @param <ID> O tipo do identificador único da entidade.
+ * Interface genérica que define as operações básicas de um controlador para uma entidade.
+ * <p>
+ * Implementa o conceito de abstração, ao definir uma estrutura comum para controladores. 
+ * Permite reutilização e padronização para diferentes tipos de entidades.
+ * </p>
+ * @param <T> Tipo da entidade que o controlador gerencia.
+ * @param <ID> Tipo do identificador único da entidade.
  */
 public interface IController<T, ID> {
 
     /**
-     * Recupera todas as entidades do tipo T.
-     *
-     * @return ResponseEntity contendo uma ResponseBase com uma lista de todas as entidades do tipo T.
+     * Recupera todos os registros da entidade gerenciada.
+     * <p>
+     * Promove encapsulamento ao utilizar ResponseEntity para estruturar a resposta.
+     * </p>
+     * @return ResponseEntity contendo uma lista de entidades ou uma resposta de erro.
      */
     public ResponseEntity<ResponseBase<List<T>>> getAll();
 
     /**
-     * Recupera uma entidade do tipo T pelo seu identificador único.
-     *
-     * @param id O identificador único da entidade.
-     * @return ResponseEntity contendo uma ResponseBase com a entidade do tipo T.
+     * Recupera um registro específico da entidade com base no identificador fornecido.
+     * <p>
+     * Polimorfismo: a implementação pode variar conforme a entidade que o controlador gerencia.
+     * </p>
+     * @param id Identificador único do registro.
+     * @return ResponseEntity contendo o registro encontrado ou uma resposta de erro.
      */
     public ResponseEntity<ResponseBase<T>> getById(ID id);
 
     /**
-     * Recupera uma entidade do tipo T a partir do corpo da requisição.
-     *
-     * @param body O corpo da requisição contendo a entidade do tipo T.
-     * @return ResponseEntity contendo uma ResponseBase com a entidade do tipo T.
+     * Cria um novo registro da entidade com base nos dados fornecidos.
+     * <p>
+     * Generalizado através de generics, permitindo reutilização para diferentes tipos de entidade.
+     * </p>
+     * @param body Objeto representando o registro a ser criado.
+     * @return ResponseEntity contendo o registro criado ou uma resposta de erro.
      */
     public ResponseEntity<ResponseBase<T>> getBody(T body);
 
     /**
-     * Atualiza uma entidade do tipo T com base no seu identificador único e no corpo da requisição.
-     *
-     * @param id   O identificador único da entidade.
-     * @param body O corpo da requisição contendo a entidade do tipo T atualizada.
-     * @return ResponseEntity contendo uma ResponseBase com a entidade do tipo T atualizada.
+     * Atualiza um registro existente da entidade com base no identificador e nos dados fornecidos.
+     * <p>
+     * Encapsula o processo de atualização e retorno de uma entidade.
+     * </p>
+     * @param id Identificador único do registro a ser atualizado.
+     * @param body Objeto contendo os dados atualizados do registro.
+     * @return ResponseEntity contendo o registro atualizado ou uma resposta de erro.
      */
     public ResponseEntity<ResponseBase<T>> update(ID id, T body);
 }

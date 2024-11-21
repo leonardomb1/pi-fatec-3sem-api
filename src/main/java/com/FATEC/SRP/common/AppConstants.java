@@ -1,19 +1,37 @@
 package com.fatec.srp.common;
 
 /**
- * A classe AppConstants é uma classe final que contém constantes utilizadas na aplicação.
+ * Classe final que contém constantes utilizadas no aplicativo.
  * 
- * <p>Conceitos de POO utilizados:
- * <ul>
- *   <li>Encapsulamento: As constantes são definidas como públicas e estáticas, permitindo o acesso global sem a necessidade de instanciar a classe.</li>
- *   <li>Imutabilidade: A classe é declarada como final para evitar que seja estendida. </li>
- *   <li>Abstração: Representa constantes utilizadas na aplicação. </li>
- * </ul>
- * </p>
+ * Esta classe serve como um repositório central para constantes que são
+ * compartilhadas e reutilizadas em todo o projeto. A intenção é evitar 
+ * valores "hard-coded" espalhados pelo código e melhorar a legibilidade 
+ * e a manutenção do projeto.
+ * 
+ * <p>Exemplo de uso:
+ * <pre>
+ * if (responseCode == AppConstants.OK) {
+ *     // Lógica de resposta bem-sucedida
+ * }
+ * </pre>
  */
 public final class AppConstants {
+
     /**
-     * Código de status HTTP para OK (200).
+     * Código de resposta HTTP para sucesso (OK).
+     * 
+     * Representa o código HTTP 200, que indica que uma requisição foi 
+     * bem-sucedida.
      */
     public static final int OK = 200;
+
+    /**
+     * Construtor privado para evitar a criação de instâncias.
+     * 
+     * Como esta classe é uma classe utilitária para constantes, não faz 
+     * sentido permitir a criação de instâncias.
+     */
+    private AppConstants() {
+        // Construtor vazio para evitar instanciação.
+    }
 }
