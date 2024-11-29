@@ -19,7 +19,7 @@ import com.fatec.srp.service.CursosService;
 
 /**
  * Controlador responsável por gerenciar as operações relacionadas aos cursos.
- * Este controlador implementa a interface IController e utiliza o CursosService para realizar operações CRUD.
+ * Este controlador implementa a interface IController e utiliza o CursosService para realizar operações CRUD.  
  * 
  * Conceitos de OOP:
  * Encapsulamento: Os métodos da classe controlam o acesso aos dados dos cursos, escondendo a complexidade do processo de manipulação e proporcionando uma interface simples de interação.
@@ -78,7 +78,19 @@ public class CursosController implements IController<CursoModel, String> {
      */
     @GetMapping("/{cursoId}")
     public ResponseEntity<ResponseBase<CursoModel>> getById(@PathVariable String cursoId) {
-        CursoModel curso = cursosService.read(cursoId);
+        CursoModel curso = new CursoModel();
+        
+        try {
+            curso = cursosService.read(cursoId);
+        } catch (Exception ex) {
+            ResponseBase<CursoModel> noResult = ResponseBase.<CursoModel>builder()
+                .error(false)
+                .info("OK")
+                .message(null)
+                .status(AppConstants.OK)
+                .build();
+            return ResponseEntity.ok(noResult);
+        }
 
         ResponseBase<CursoModel> cBase = ResponseBase.<CursoModel>builder()
             .error(false)

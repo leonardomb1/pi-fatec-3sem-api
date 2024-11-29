@@ -72,7 +72,19 @@ public class CargoController implements IController<CargoModel, String> {
      */
     @GetMapping("/{cargoId}")
     public ResponseEntity<ResponseBase<CargoModel>> getById(@PathVariable String cargoId) {
-        CargoModel cargo = cargoService.read(cargoId);
+        CargoModel cargo = new CargoModel();
+        
+        try {
+            cargo = cargoService.read(cargoId);
+        } catch (Exception ex) {
+            ResponseBase<CargoModel> noResult = ResponseBase.<CargoModel>builder()
+                .error(false)
+                .info("OK")
+                .message(null)
+                .status(AppConstants.OK)
+                .build();
+            return ResponseEntity.ok(noResult);
+        }
 
         ResponseBase<CargoModel> cBase = ResponseBase.<CargoModel>builder()
             .error(false)

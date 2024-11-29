@@ -3,6 +3,8 @@ package com.fatec.srp.models;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
@@ -37,29 +39,33 @@ public class CursoModel {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     /**
      * Lista de turmas associadas a este curso. Relacionamento de um para muitos com a classe `TurmaModel`.
      */
+    @JsonIgnore
     @OneToMany(mappedBy = "curso")
     private List<TurmaModel> turma;
 
     /**
      * Lista de classificações associadas a este curso. Relacionamento de um para muitos com a classe `CursoClassificacaoModel`.
      */
+    @JsonIgnore
     @OneToMany(mappedBy = "curso")
     private List<CursoClassificacaoModel> cursoClassificacao;
 
     /**
      * Lista de pré-requisitos associadas a este curso. Relacionamento de um para muitos com a classe `PreRequisitoCursoModel`.
      */
+    @JsonIgnore
     @OneToMany(mappedBy = "curso")
     private List<PreRequisitoCursoModel> cursoRequisito;
 
     /**
      * Lista de trilhas associadas a este curso. Relacionamento de um para muitos com a classe `CursoTrilhaModel`.
      */
+    @JsonIgnore
     @OneToMany(mappedBy = "curso")
     private List<CursoTrilhaModel> cursoTrilha;
 
@@ -78,6 +84,15 @@ public class CursoModel {
     /**
      * Programação do curso. Este campo é obrigatório e possui um limite de 255 caracteres.
      */
+    @Column(name = "valor_curso", nullable = true, length = 255)
+    private Float valorCurso;
+    
+    @Column(name = "carga_horaria", nullable = true, length = 255)
+    private String cargaHoraria;
+    
+    @Column(name = "requisitos", nullable = true, length = 255)
+    private String requisitos;
+
     @Column(name = "programacao", nullable = false, length = 255)
     private String programacao;
 

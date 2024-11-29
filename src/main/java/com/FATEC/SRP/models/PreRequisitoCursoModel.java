@@ -32,7 +32,7 @@ public class PreRequisitoCursoModel {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     /**
      * Pré-requisito associado ao curso. Relacionamento de muitos para um com a classe `PreRequisitoModel`.

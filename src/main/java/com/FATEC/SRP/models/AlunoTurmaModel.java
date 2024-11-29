@@ -38,13 +38,13 @@ public class AlunoTurmaModel {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     /**
      * Representa o aluno associado a esta turma. A relação é de muitos para um com a classe `AlunoModel`.
      */
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "nome_usuario", referencedColumnName = "nome_usuario")
+    @JoinColumn(name = "id_aluno", referencedColumnName = "id")
     private AlunoModel aluno;
     
     /**

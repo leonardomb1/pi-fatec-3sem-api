@@ -66,7 +66,19 @@ public class UsuarioController implements IController<UsuarioModel, String> {
      */
     @GetMapping("/{usuarioId}")
     public ResponseEntity<ResponseBase<UsuarioModel>> getById(@PathVariable String usuarioId) {
-        UsuarioModel usuario = usuarioService.read(usuarioId);
+        UsuarioModel usuario = new UsuarioModel();
+        
+        try {
+            usuario = usuarioService.read(usuarioId);
+        } catch (Exception ex) {
+            ResponseBase<UsuarioModel> noResult = ResponseBase.<UsuarioModel>builder()
+                .error(false)
+                .info("OK")
+                .message(null)
+                .status(AppConstants.OK)
+                .build();
+            return ResponseEntity.ok(noResult);
+        }
 
         ResponseBase<UsuarioModel> cBase = ResponseBase.<UsuarioModel>builder()
             .error(false)
@@ -80,6 +92,31 @@ public class UsuarioController implements IController<UsuarioModel, String> {
         } else {
             return ResponseEntity.ok(cBase);
         }
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<ResponseBase<String>> login(@RequestBody UsuarioModel usuario) {
+        UsuarioModel user = usuarioService.readByName(usuario.getNomeUsuario());
+        
+        if(user == null) {
+            return ResponseEntity.status(AppConstants.UNAUTHORIZED).build();
+        }
+        
+        String givenPassword = usuario.getSenha();
+        String actualPassword = user.getSenha();
+        
+        if (!givenPassword.equals(actualPassword)) {
+            return ResponseEntity.status(AppConstants.UNAUTHORIZED).build();
+        }
+     
+        ResponseBase<String> res = ResponseBase.<String>builder()
+            .error(false)
+            .info("OK")
+            .message("")
+            .status(AppConstants.OK)
+            .build();
+
+        return ResponseEntity.ok(res);
     }
 
     /**

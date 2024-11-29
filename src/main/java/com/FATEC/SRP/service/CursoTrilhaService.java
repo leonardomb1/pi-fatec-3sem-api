@@ -4,10 +4,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.fatec.srp.models.CursoModel;
 import com.fatec.srp.models.CursoTrilhaModel;
+import com.fatec.srp.models.TrilhaModel;
 import com.fatec.srp.repositories.CursoTrilhaRepository;
+import com.fatec.srp.repositories.CursosRepository;
+import com.fatec.srp.repositories.TrilhaRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Serviço que oferece operações de CRUD para a entidade {@link CursoTrilhaModel}.
@@ -31,6 +36,12 @@ public class CursoTrilhaService implements IService<CursoTrilhaModel, String> {
 
     @Autowired
     private CursoTrilhaRepository CursoTrilhaRepository;
+
+    @Autowired
+    private TrilhaRepository TrilhaRepository;
+
+    @Autowired
+    private CursosRepository CursosRepository;
 
     /**
      * Recupera todos os cursos associados a trilhas.
@@ -62,6 +73,13 @@ public class CursoTrilhaService implements IService<CursoTrilhaModel, String> {
      */
     @Transactional
     public CursoTrilhaModel create(CursoTrilhaModel model) {
+
+        Optional<CursoModel> cursoOptional = CursosRepository.findById(model.getCurso().getId());
+        model.setCurso(cursoOptional.get());
+
+        Optional<TrilhaModel> trilhaOptional = TrilhaRepository.findById(model.getTrilha().getId());
+        model.setTrilha(trilhaOptional.get());
+
         CursoTrilhaModel CursoTrilha = CursoTrilhaRepository.save(model);
         return CursoTrilha;
     }
@@ -77,8 +95,11 @@ public class CursoTrilhaService implements IService<CursoTrilhaModel, String> {
     public CursoTrilhaModel update(String CursoTrilhaId, CursoTrilhaModel uModel) {
         CursoTrilhaModel CursoTrilha = read(CursoTrilhaId);
 
-        CursoTrilha.setTrilha(uModel.getTrilha());
-        CursoTrilha.setCurso(uModel.getCurso());
+        Optional<CursoModel> cursoOptional = CursosRepository.findById(uModel.getCurso().getId());
+        uModel.setCurso(cursoOptional.get());
+
+        Optional<TrilhaModel> trilhaOptional = TrilhaRepository.findById(uModel.getTrilha().getId());
+        uModel.setTrilha(trilhaOptional.get());
 
         CursoTrilhaRepository.save(CursoTrilha);
         return CursoTrilha;

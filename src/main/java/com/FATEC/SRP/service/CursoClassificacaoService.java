@@ -4,10 +4,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.fatec.srp.models.ClassificacaoModel;
 import com.fatec.srp.models.CursoClassificacaoModel;
+import com.fatec.srp.models.CursoModel;
+import com.fatec.srp.repositories.ClassificacaoRepository;
 import com.fatec.srp.repositories.CursoClassificacaoRepository;
+import com.fatec.srp.repositories.CursosRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Serviço que oferece operações de CRUD para a entidade {@link CursoClassificacaoModel}.
@@ -31,6 +36,12 @@ public class CursoClassificacaoService implements IService<CursoClassificacaoMod
 
     @Autowired
     private CursoClassificacaoRepository CursoClassificacaoRepository;
+
+    @Autowired
+    private CursosRepository CursosRepository;
+
+    @Autowired
+    private ClassificacaoRepository ClassificacaoRepository;
 
     /**
      * Recupera todos os registros de curso e classificação.
@@ -62,6 +73,13 @@ public class CursoClassificacaoService implements IService<CursoClassificacaoMod
      */
     @Transactional
     public CursoClassificacaoModel create(CursoClassificacaoModel model) {
+
+        Optional<CursoModel> cursoOptional = CursosRepository.findById(model.getCurso().getId());
+        model.setCurso(cursoOptional.get());
+
+        Optional<ClassificacaoModel> classificacaoOptional = ClassificacaoRepository.findById(model.getClassificacao().getId());
+        model.setClassificacao(classificacaoOptional.get());
+
         CursoClassificacaoModel cursoClassificacao = CursoClassificacaoRepository.save(model);
         return cursoClassificacao;
     }
@@ -77,8 +95,11 @@ public class CursoClassificacaoService implements IService<CursoClassificacaoMod
     public CursoClassificacaoModel update(String cursoClassificacaoId, CursoClassificacaoModel uModel) {
         CursoClassificacaoModel cursoClassificacao = read(cursoClassificacaoId);
 
-        cursoClassificacao.setCurso(uModel.getCurso());
-        cursoClassificacao.setClassificacao(uModel.getClassificacao());
+        Optional<CursoModel> cursoOptional = CursosRepository.findById(uModel.getCurso().getId());
+        uModel.setCurso(cursoOptional.get());
+
+        Optional<ClassificacaoModel> classificacaoOptional = ClassificacaoRepository.findById(uModel.getClassificacao().getId());
+        uModel.setClassificacao(classificacaoOptional.get());
 
         CursoClassificacaoRepository.save(cursoClassificacao);
         return cursoClassificacao;

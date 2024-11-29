@@ -79,7 +79,19 @@ public class PreRequisitoCursoController implements IController<PreRequisitoCurs
      */
     @GetMapping("/{prerequisitoCursoId}")
     public ResponseEntity<ResponseBase<PreRequisitoCursoModel>> getById(@PathVariable String prerequisitoCursoId) {
-        PreRequisitoCursoModel prerequisitoCurso = preRequisitoCursoService.read(prerequisitoCursoId);
+        PreRequisitoCursoModel prerequisitoCurso = new PreRequisitoCursoModel();
+        
+        try {
+            prerequisitoCurso = preRequisitoCursoService.read(prerequisitoCursoId);
+        } catch (Exception ex) {
+            ResponseBase<PreRequisitoCursoModel> noResult = ResponseBase.<PreRequisitoCursoModel>builder()
+                .error(false)
+                .info("OK")
+                .message(null)
+                .status(AppConstants.OK)
+                .build();
+            return ResponseEntity.ok(noResult);
+        }
 
         ResponseBase<PreRequisitoCursoModel> cBase = ResponseBase.<PreRequisitoCursoModel>builder()
             .error(false)

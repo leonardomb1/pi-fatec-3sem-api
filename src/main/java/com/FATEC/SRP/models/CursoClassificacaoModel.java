@@ -36,7 +36,7 @@ public class CursoClassificacaoModel {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     /**
      * A classificação associada ao curso. Relacionamento de muitos para um com a classe `ClassificacaoModel`.

@@ -1,13 +1,18 @@
 package com.fatec.srp.service;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.fatec.srp.models.FuncionarioModel;
 import com.fatec.srp.models.FuncionarioTurmaModel;
+import com.fatec.srp.models.TurmaModel;
+import com.fatec.srp.repositories.FuncionarioRepository;
 import com.fatec.srp.repositories.FuncionarioTurmaRepository;
-
-import java.util.List;
+import com.fatec.srp.repositories.TurmaRepository;
 
 /**
  * Serviço que oferece operações de CRUD para a entidade {@link FuncionarioTurmaModel}.
@@ -31,6 +36,12 @@ public class FuncionarioTurmaService implements IService<FuncionarioTurmaModel, 
 
     @Autowired
     private FuncionarioTurmaRepository FuncionarioTurmaRepository;
+
+    @Autowired
+    private FuncionarioRepository FuncionarioRepository;
+
+    @Autowired
+    private TurmaRepository TurmaRepository;
 
     /**
      * Recupera todos os registros de funcionários e turmas.
@@ -62,6 +73,13 @@ public class FuncionarioTurmaService implements IService<FuncionarioTurmaModel, 
      */
     @Transactional
     public FuncionarioTurmaModel create(FuncionarioTurmaModel model) {
+
+        Optional<FuncionarioModel> funcionarioOptional = FuncionarioRepository.findById(model.getFuncionario().getId());
+        model.setFuncionario(funcionarioOptional.get());
+
+        Optional<TurmaModel> turmaOptional = TurmaRepository.findById(model.getTurma().getId());
+        model.setTurma(turmaOptional.get());
+
         FuncionarioTurmaModel FuncionarioTurma = FuncionarioTurmaRepository.save(model);
         return FuncionarioTurma;
     }
@@ -78,8 +96,12 @@ public class FuncionarioTurmaService implements IService<FuncionarioTurmaModel, 
         FuncionarioTurmaModel FuncionarioTurma = read(FuncionarioTurmaId);
 
         FuncionarioTurma.setRazaoSocial(uModel.getRazaoSocial());
-        FuncionarioTurma.setTurma(uModel.getTurma());
-        FuncionarioTurma.setFuncionario(uModel.getFuncionario());
+
+        Optional<FuncionarioModel> funcionarioOptional = FuncionarioRepository.findById(uModel.getFuncionario().getId());
+        uModel.setFuncionario(funcionarioOptional.get());
+
+        Optional<TurmaModel> turmaOptional = TurmaRepository.findById(uModel.getTurma().getId());
+        uModel.setTurma(turmaOptional.get());
 
         FuncionarioTurmaRepository.save(FuncionarioTurma);
         return FuncionarioTurma;

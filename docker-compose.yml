@@ -1,0 +1,11 @@
+services:
+  app:
+    image: leomb1/pi-fatec-3sem-api
+    container_name: pi-fatec-3sem-api
+    environment:
+      - DB_SERVER=localhost:48000
+      - DB_DATABASE=SRP
+      - DB_USERNAME=login
+      - DB_PASSWORD=123
+    ports:
+      - "8080:8080"

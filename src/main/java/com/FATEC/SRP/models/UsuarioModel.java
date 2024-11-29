@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.Getter;
@@ -30,7 +32,11 @@ public class UsuarioModel {
     /**
      * Nome de usuário único no sistema.
      */
+
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
     @Column(name = "nome_usuario", nullable = false, length = 20)
     private String nomeUsuario;
 
@@ -43,8 +49,12 @@ public class UsuarioModel {
     /**
      * Nome social do usuário, utilizado para chamadas informais ou preferenciais.
      */
-    @Column(name = "nome_social", nullable = false, length = 100)
+    @Column(name = "nome_social", nullable = true, length = 100)
     private String nomeSocial;
+
+    
+    @Column(name = "email", nullable = true, length = 50)
+    private String email;
 
     /**
      * Senha do usuário, necessária para autenticação.

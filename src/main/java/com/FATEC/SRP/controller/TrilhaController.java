@@ -65,7 +65,19 @@ public class TrilhaController implements IController<TrilhaModel, String> {
      */
     @GetMapping("/{trilhaId}")
     public ResponseEntity<ResponseBase<TrilhaModel>> getById(@PathVariable String trilhaId) {
-        TrilhaModel trilha = trilhaService.read(trilhaId);
+        TrilhaModel trilha = new TrilhaModel();
+        
+        try {
+            trilha = trilhaService.read(trilhaId);
+        } catch (Exception ex) {
+            ResponseBase<TrilhaModel> noResult = ResponseBase.<TrilhaModel>builder()
+                .error(false)
+                .info("OK")
+                .message(null)
+                .status(AppConstants.OK)
+                .build();
+            return ResponseEntity.ok(noResult);
+        }
 
         ResponseBase<TrilhaModel> cBase = ResponseBase.<TrilhaModel>builder()
             .error(false)

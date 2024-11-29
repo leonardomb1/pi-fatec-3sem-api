@@ -3,9 +3,13 @@ package com.fatec.srp.models;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
@@ -38,13 +42,17 @@ public class AlunoModel {
      * O campo `nome_usuario` é usado como chave estrangeira.
      */
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "nome_usuario", referencedColumnName = "nome_usuario")
+    @JoinColumn(name = "id_usuario", referencedColumnName = "id")
     private UsuarioModel usuario;
 
     /**
      * Lista de turmas associadas a este aluno. A relação é de um para muitos com a classe `AlunoTurmaModel`.
      */
+    @JsonIgnore
     @OneToMany(mappedBy = "aluno")
     private List<AlunoTurmaModel> turmaAluno;
 
@@ -52,7 +60,7 @@ public class AlunoModel {
      * Representa a empresa associada a este aluno. A relação é de muitos para um com a classe `EmpresaModel`.
      */
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name= "empresa_id", referencedColumnName = "id")
+    @JoinColumn(name= "empresa_id", referencedColumnName = "id", nullable = true)
     private EmpresaModel empresa;
 
     /**
@@ -70,13 +78,13 @@ public class AlunoModel {
     /**
      * Nome do banco do aluno.
      */
-    @Column(name = "banco", nullable = false, length = 30)
+    @Column(name = "banco", nullable = true, length = 30)
     private String banco;
 
     /**
      * Agência bancária do aluno.
      */
-    @Column(name = "agencia", nullable = false, length = 30)
+    @Column(name = "agencia", nullable = true, length = 30)
     private String agencia;
 
     /**
@@ -96,6 +104,21 @@ public class AlunoModel {
      */
     @Column(name = "nivel_escolaridade", nullable = false, length = 30)
     private String nivelEscolaridade;
+    
+    /**
+     * CEP do aluno
+     */
+    @Column(name = "cep", nullable = false, length = 14)
+    private String cep;
+
+    @Column(name = "nome_pai", nullable = false, length = 50)
+    private String nomePai;
+
+    @Column(name = "nome_mae", nullable = false, length = 50)
+    private String nomeMae;
+
+    @Column(name = "nome_responsavel", nullable = true, length = 50)
+    private String nomeResponsavel;
 
     /**
      * Indica se o aluno possui alguma deficiência.
