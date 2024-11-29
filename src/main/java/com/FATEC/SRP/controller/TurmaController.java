@@ -67,7 +67,19 @@ public class TurmaController implements IController<TurmaModel, String> {
      */
     @GetMapping("/{turmaId}")
     public ResponseEntity<ResponseBase<TurmaModel>> getById(@PathVariable String turmaId) {
-        TurmaModel turma = turmaService.read(turmaId);
+        TurmaModel turma = new TurmaModel();
+        
+        try {
+            turma = turmaService.read(turmaId);
+        } catch (Exception ex) {
+            ResponseBase<TurmaModel> noResult = ResponseBase.<TurmaModel>builder()
+                .error(false)
+                .info("OK")
+                .message(null)
+                .status(AppConstants.OK)
+                .build();
+            return ResponseEntity.ok(noResult);
+        }
 
         ResponseBase<TurmaModel> cBase = ResponseBase.<TurmaModel>builder()
             .error(false)

@@ -79,7 +79,19 @@ public class FuncionarioTurmaController implements IController<FuncionarioTurmaM
      */
     @GetMapping("/{funcionarioTurmaId}")
     public ResponseEntity<ResponseBase<FuncionarioTurmaModel>> getById(@PathVariable String funcionarioTurmaId) {
-        FuncionarioTurmaModel funcionarioTurma = funcionarioTurmaService.read(funcionarioTurmaId);
+        FuncionarioTurmaModel funcionarioTurma = new FuncionarioTurmaModel();
+
+        try {
+            funcionarioTurma = funcionarioTurmaService.read(funcionarioTurmaId);
+        } catch (Exception ex) {
+            ResponseBase<FuncionarioTurmaModel> noResult = ResponseBase.<FuncionarioTurmaModel>builder()
+                .error(false)
+                .info("OK")
+                .message(null)
+                .status(AppConstants.OK)
+                .build();
+            return ResponseEntity.ok(noResult);
+        }
 
         ResponseBase<FuncionarioTurmaModel> cBase = ResponseBase.<FuncionarioTurmaModel>builder()
             .error(false)

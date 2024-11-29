@@ -79,7 +79,19 @@ public class EmpresaController implements IController<EmpresaModel, String> {
      */
     @GetMapping("/{empresaId}")
     public ResponseEntity<ResponseBase<EmpresaModel>> getById(@PathVariable String empresaId) {
-        EmpresaModel empresa = empresaService.read(empresaId);
+        EmpresaModel empresa = new EmpresaModel();
+        
+        try {
+            empresa = empresaService.read(empresaId);
+        } catch (Exception ex) {
+            ResponseBase<EmpresaModel> noResult = ResponseBase.<EmpresaModel>builder()
+                .error(false)
+                .info("OK")
+                .message(null)
+                .status(AppConstants.OK)
+                .build();
+            return ResponseEntity.ok(noResult);
+        }
 
         ResponseBase<EmpresaModel> cBase = ResponseBase.<EmpresaModel>builder()
             .error(false)

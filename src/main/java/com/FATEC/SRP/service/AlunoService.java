@@ -5,9 +5,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.fatec.srp.models.AlunoModel;
+import com.fatec.srp.models.EmpresaModel;
+import com.fatec.srp.models.UsuarioModel;
 import com.fatec.srp.repositories.AlunoRepository;
+import com.fatec.srp.repositories.EmpresaRepository;
+import com.fatec.srp.repositories.UsuarioRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Serviço que oferece operações de CRUD para a entidade {@link AlunoModel}.
@@ -31,6 +36,12 @@ public class AlunoService implements IService<AlunoModel, String> {
 
     @Autowired
     private AlunoRepository AlunoRepository;
+    
+    @Autowired
+    private EmpresaRepository EmpresaRepository;
+
+    @Autowired
+    private UsuarioRepository UsuarioRepository;
 
     /**
      * Recupera todos os alunos registrados no banco de dados.
@@ -39,6 +50,9 @@ public class AlunoService implements IService<AlunoModel, String> {
      */
     public List<AlunoModel> read() {
         List<AlunoModel> cList = AlunoRepository.findAll();
+        for (AlunoModel alunoModel : cList) {
+            alunoModel.getUsuario().setSenha("");
+        }
         return cList;
     }
 
@@ -62,6 +76,31 @@ public class AlunoService implements IService<AlunoModel, String> {
      */
     @Transactional
     public AlunoModel create(AlunoModel model) {
+        
+        Optional<UsuarioModel> usuarioOptional = UsuarioRepository.findById(model.getUsuario().getId());
+        model.setUsuario(usuarioOptional.get());
+
+        if(model.getEmpresa() != null) {
+            Optional<EmpresaModel> empresaOptional = EmpresaRepository.findById(model.getEmpresa().getId());
+            model.setEmpresa(empresaOptional.get());
+        }
+
+        AlunoModel Aluno = AlunoRepository.save(model);
+        return Aluno;
+    }
+
+    @Transactional
+    public AlunoModel createWithUser(AlunoModel model) {
+        
+        UsuarioModel user = model.getUsuario();
+        UsuarioRepository.save(user);
+        model.setUsuario(user);
+
+        if(model.getEmpresa() != null) {
+            Optional<EmpresaModel> empresaOptional = EmpresaRepository.findById(model.getEmpresa().getId());
+            model.setEmpresa(empresaOptional.get());
+        }
+
         AlunoModel Aluno = AlunoRepository.save(model);
         return Aluno;
     }
@@ -77,19 +116,24 @@ public class AlunoService implements IService<AlunoModel, String> {
     public AlunoModel update(String AlunoId, AlunoModel uModel) {
         AlunoModel Aluno = read(AlunoId);
 
+        Optional<UsuarioModel> usuarioOptional = UsuarioRepository.findById(uModel.getUsuario().getId());
+        uModel.setUsuario(usuarioOptional.get());
+
+        if(uModel.getEmpresa() != null) {
+            Optional<EmpresaModel> empresaOptional = EmpresaRepository.findById(uModel.getEmpresa().getId());
+            uModel.setEmpresa(empresaOptional.get());
+        }
+
         Aluno.setAgencia(uModel.getAgencia());
         Aluno.setBanco(uModel.getBanco());
         Aluno.setCandidato(uModel.getCandidato());
         Aluno.setCpf(uModel.getCpf());
         Aluno.setDescricaoPcd(uModel.getDescricaoPcd());
         Aluno.setDtNascimento(uModel.getDtNascimento());
-        Aluno.setEmpresa(uModel.getEmpresa());
         Aluno.setEndereco(uModel.getEndereco());
         Aluno.setNivelEscolaridade(uModel.getNivelEscolaridade());
         Aluno.setPcd(uModel.getPcd());
         Aluno.setRg(uModel.getRg());
-        Aluno.setTurmaAluno(uModel.getTurmaAluno());
-        Aluno.setUsuario(uModel.getUsuario());
 
         AlunoRepository.save(Aluno);
         return Aluno;

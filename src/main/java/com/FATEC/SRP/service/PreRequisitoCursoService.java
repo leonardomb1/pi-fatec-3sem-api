@@ -4,10 +4,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.fatec.srp.models.CursoModel;
 import com.fatec.srp.models.PreRequisitoCursoModel;
+import com.fatec.srp.models.PreRequisitoModel;
+import com.fatec.srp.repositories.CursosRepository;
 import com.fatec.srp.repositories.PreRequisitoCursoRepository;
+import com.fatec.srp.repositories.PreRequisitoRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Serviço responsável pelas operações CRUD relacionadas aos pré-requisitos de cursos.
@@ -24,6 +29,12 @@ public class PreRequisitoCursoService implements IService<PreRequisitoCursoModel
 
     @Autowired
     private PreRequisitoCursoRepository PreRequisitoCursoRepository;
+
+    @Autowired
+    private CursosRepository CursosRepository;
+
+    @Autowired
+    private PreRequisitoRepository PreRequisitoRepository;
 
     /**
      * Recupera todos os registros de pré-requisitos de cursos.
@@ -65,6 +76,14 @@ public class PreRequisitoCursoService implements IService<PreRequisitoCursoModel
      */
     @Transactional
     public PreRequisitoCursoModel create(PreRequisitoCursoModel model) {
+
+        
+        Optional<CursoModel> cursosOptional = CursosRepository.findById(model.getCurso().getId());
+        model.setCurso(cursosOptional.get());
+
+        Optional<PreRequisitoModel> preRequisitoOptional = PreRequisitoRepository.findById(model.getPreRequisito().getId());
+        model.setPreRequisito(preRequisitoOptional.get());
+
         PreRequisitoCursoModel PreRequisitoCurso = PreRequisitoCursoRepository.save(model);
         return PreRequisitoCurso;
     }
@@ -84,8 +103,11 @@ public class PreRequisitoCursoService implements IService<PreRequisitoCursoModel
     public PreRequisitoCursoModel update(String PreRequisitoCursoId, PreRequisitoCursoModel uModel) {
         PreRequisitoCursoModel PreRequisitoCurso = read(PreRequisitoCursoId);
 
-        PreRequisitoCurso.setPreRequisito(uModel.getPreRequisito());
-        PreRequisitoCurso.setCurso(uModel.getCurso());
+        Optional<CursoModel> cursosOptional = CursosRepository.findById(uModel.getCurso().getId());
+        uModel.setCurso(cursosOptional.get());
+
+        Optional<PreRequisitoModel> preRequisitoOptional = PreRequisitoRepository.findById(uModel.getPreRequisito().getId());
+        uModel.setPreRequisito(preRequisitoOptional.get());
 
         PreRequisitoCursoRepository.save(PreRequisitoCurso);
         return PreRequisitoCurso;

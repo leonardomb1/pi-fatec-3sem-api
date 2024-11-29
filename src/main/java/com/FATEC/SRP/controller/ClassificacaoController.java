@@ -72,7 +72,19 @@ public class ClassificacaoController implements IController<ClassificacaoModel, 
      */
     @GetMapping("/{classificacaoId}")
     public ResponseEntity<ResponseBase<ClassificacaoModel>> getById(@PathVariable String classificacaoId) {
-        ClassificacaoModel classificacao = classificacaoService.read(classificacaoId);
+        ClassificacaoModel classificacao = new ClassificacaoModel();
+        
+        try {
+            classificacao = classificacaoService.read(classificacaoId);
+        } catch (Exception ex) {
+            ResponseBase<ClassificacaoModel> noResult = ResponseBase.<ClassificacaoModel>builder()
+                .error(false)
+                .info("OK")
+                .message(null)
+                .status(AppConstants.OK)
+                .build();
+            return ResponseEntity.ok(noResult);
+        }
 
         ResponseBase<ClassificacaoModel> cBase = ResponseBase.<ClassificacaoModel>builder()
             .error(false)

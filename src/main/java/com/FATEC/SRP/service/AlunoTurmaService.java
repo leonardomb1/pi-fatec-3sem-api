@@ -5,9 +5,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.fatec.srp.models.AlunoTurmaModel;
+import com.fatec.srp.models.TurmaModel;
+import com.fatec.srp.models.AlunoModel;
+import com.fatec.srp.repositories.AlunoRepository;
+import com.fatec.srp.repositories.TurmaRepository;
 import com.fatec.srp.repositories.AlunoTurmaRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Serviço que oferece operações de CRUD para a entidade {@link AlunoTurmaModel}.
@@ -31,6 +36,12 @@ public class AlunoTurmaService implements IService<AlunoTurmaModel, String> {
 
     @Autowired
     private AlunoTurmaRepository AlunoTurmaRepository;
+
+    @Autowired
+    private TurmaRepository TurmaRepository;
+
+    @Autowired
+    private AlunoRepository AlunoRepository;
 
     /**
      * Recupera todos os registros de alunos matriculados em turmas.
@@ -62,6 +73,13 @@ public class AlunoTurmaService implements IService<AlunoTurmaModel, String> {
      */
     @Transactional
     public AlunoTurmaModel create(AlunoTurmaModel model) {
+
+        Optional<AlunoModel> alunoOptional = AlunoRepository.findById(model.getAluno().getId());
+        model.setAluno(alunoOptional.get());
+
+        Optional<TurmaModel> turmaOptional = TurmaRepository.findById(model.getTurma().getId());
+        model.setTurma(turmaOptional.get());
+
         AlunoTurmaModel AlunoTurma = AlunoTurmaRepository.save(model);
         return AlunoTurma;
     }
@@ -77,8 +95,11 @@ public class AlunoTurmaService implements IService<AlunoTurmaModel, String> {
     public AlunoTurmaModel update(String AlunoTurmaId, AlunoTurmaModel uModel) {
         AlunoTurmaModel AlunoTurma = read(AlunoTurmaId);
 
-        AlunoTurma.setAluno(uModel.getAluno());
-        AlunoTurma.setTurma(uModel.getTurma());
+        Optional<AlunoModel> alunoOptional = AlunoRepository.findById(uModel.getAluno().getId());
+        uModel.setAluno(alunoOptional.get());
+
+        Optional<TurmaModel> turmaOptional = TurmaRepository.findById(uModel.getTurma().getId());
+        uModel.setTurma(turmaOptional.get());
 
         AlunoTurmaRepository.save(AlunoTurma);
         return AlunoTurma;

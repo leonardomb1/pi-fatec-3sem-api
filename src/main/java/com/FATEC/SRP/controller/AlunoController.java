@@ -72,16 +72,27 @@ public class AlunoController implements IController<AlunoModel, String> {
      */
     @GetMapping("/{alunoId}")
     public ResponseEntity<ResponseBase<AlunoModel>> getById(@PathVariable String alunoId) {
-        AlunoModel Aluno = alunoService.read(alunoId);
+        AlunoModel aluno = new AlunoModel();
 
+        try {
+            aluno = alunoService.read(alunoId);
+        } catch (Exception ex) {
+            ResponseBase<AlunoModel> noResult = ResponseBase.<AlunoModel>builder()
+                .error(false)
+                .info("OK")
+                .message(null)
+                .status(AppConstants.OK)
+                .build();
+            return ResponseEntity.ok(noResult);
+        }
         ResponseBase<AlunoModel> cBase = ResponseBase.<AlunoModel>builder()
             .error(false)
             .info("OK")
-            .message(Aluno)
+            .message(aluno)
             .status(AppConstants.OK)
             .build();
 
-        if (Aluno == null) {
+        if (aluno == null) {
             return ResponseEntity.notFound().build();
         } else {
             return ResponseEntity.ok(cBase);
@@ -98,7 +109,7 @@ public class AlunoController implements IController<AlunoModel, String> {
      */
     @PostMapping
     public ResponseEntity<ResponseBase<AlunoModel>> getBody(@RequestBody AlunoModel aluno) {
-        alunoService.create(aluno);
+        alunoService.createWithUser(aluno);
 
         ResponseBase<AlunoModel> cBase = ResponseBase.<AlunoModel>builder()
             .error(false)

@@ -79,7 +79,19 @@ public class CursoTrilhaController implements IController<CursoTrilhaModel, Stri
      */
     @GetMapping("/{cursoTrilhaId}")
     public ResponseEntity<ResponseBase<CursoTrilhaModel>> getById(@PathVariable String cursoTrilhaId) {
-        CursoTrilhaModel cursoTrilha = cursoTrilhaService.read(cursoTrilhaId);
+        CursoTrilhaModel cursoTrilha = new CursoTrilhaModel();
+        
+        try {
+            cursoTrilha = cursoTrilhaService.read(cursoTrilhaId);
+        } catch (Exception ex) {
+            ResponseBase<CursoTrilhaModel> noResult = ResponseBase.<CursoTrilhaModel>builder()
+                .error(false)
+                .info("OK")
+                .message(null)
+                .status(AppConstants.OK)
+                .build();
+            return ResponseEntity.ok(noResult);
+        }
 
         ResponseBase<CursoTrilhaModel> cBase = ResponseBase.<CursoTrilhaModel>builder()
             .error(false)

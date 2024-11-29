@@ -37,13 +37,13 @@ public class FuncionarioTurmaModel {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     /**
      * Funcionário associado à turma. Relacionamento de muitos para um com a classe `FuncionarioModel`.
      */
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name= "funcionario_id", referencedColumnName = "nome_usuario")
+    @JoinColumn(name= "id_funcionario", referencedColumnName = "id")
     private FuncionarioModel funcionario; 
 
     /**

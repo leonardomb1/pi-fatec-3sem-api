@@ -4,6 +4,8 @@ import java.sql.Date;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -41,7 +43,7 @@ public class TurmaModel {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     /**
      * Curso associado à turma. Relacionamento de muitos para um com a classe `CursoModel`.
@@ -77,6 +79,7 @@ public class TurmaModel {
     /**
      * Lista de associações entre funcionários e turmas. Relacionamento de um para muitos com a classe `FuncionarioTurmaModel`.
      */
+    @JsonIgnore
     @OneToMany(mappedBy = "turma")
     private List<FuncionarioTurmaModel> funcionarioTurma;
 
@@ -89,6 +92,7 @@ public class TurmaModel {
     /**
      * Lista de associações entre alunos e turmas. Relacionamento de um para muitos com a classe `AlunoTurmaModel`.
      */
+    @JsonIgnore
     @OneToMany(mappedBy = "turma")
     private List<AlunoTurmaModel> alunoTurma;
 

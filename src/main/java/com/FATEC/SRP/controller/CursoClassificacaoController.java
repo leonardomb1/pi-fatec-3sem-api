@@ -77,7 +77,19 @@ public class CursoClassificacaoController implements IController<CursoClassifica
      */
     @GetMapping("/{cursoClassificacaoId}")
     public ResponseEntity<ResponseBase<CursoClassificacaoModel>> getById(@PathVariable String cursoClassificacaoId) {
-        CursoClassificacaoModel cursoClassificacao = cursoClassificaoService.read(cursoClassificacaoId);
+        CursoClassificacaoModel cursoClassificacao = new CursoClassificacaoModel();
+        
+        try {
+            cursoClassificacao = cursoClassificaoService.read(cursoClassificacaoId);
+        } catch (Exception ex) {
+            ResponseBase<CursoClassificacaoModel> noResult = ResponseBase.<CursoClassificacaoModel>builder()
+                .error(false)
+                .info("OK")
+                .message(null)
+                .status(AppConstants.OK)
+                .build();
+            return ResponseEntity.ok(noResult);
+        }
 
         ResponseBase<CursoClassificacaoModel> cBase = ResponseBase.<CursoClassificacaoModel>builder()
             .error(false)

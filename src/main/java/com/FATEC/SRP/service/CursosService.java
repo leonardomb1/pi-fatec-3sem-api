@@ -80,6 +80,9 @@ public class CursosService implements IService<CursoModel, String> {
         curso.setDescCurso(uModel.getDescCurso());
         curso.setNomeCurso(uModel.getNomeCurso());
         curso.setProgramacao(uModel.getProgramacao());
+        curso.setCargaHoraria(uModel.getCargaHoraria());
+        curso.setRequisitos(uModel.getRequisitos());
+        curso.setValorCurso(uModel.getValorCurso());
 
         cursosRepository.save(curso);
         return curso;

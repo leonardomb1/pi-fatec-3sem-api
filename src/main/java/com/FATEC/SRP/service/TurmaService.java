@@ -4,10 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.fatec.srp.models.CursoModel;
 import com.fatec.srp.models.TurmaModel;
+import com.fatec.srp.repositories.CursosRepository;
 import com.fatec.srp.repositories.TurmaRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Serviço responsável pelas operações CRUD relacionadas às turmas.
@@ -25,6 +28,10 @@ public class TurmaService implements IService<TurmaModel, String> {
 
     @Autowired
     private TurmaRepository TurmaRepository;
+
+    @Autowired
+    private CursosRepository CursoRepository;
+
 
     /**
      * Recupera todos os registros de turmas.
@@ -66,6 +73,10 @@ public class TurmaService implements IService<TurmaModel, String> {
      */
     @Transactional
     public TurmaModel create(TurmaModel model) {
+
+        Optional<CursoModel> cursoOptional = CursoRepository.findById(model.getCurso().getId());
+        model.setCurso(cursoOptional.get());
+
         TurmaModel Turma = TurmaRepository.save(model);
         return Turma;
     }
@@ -88,7 +99,9 @@ public class TurmaService implements IService<TurmaModel, String> {
         Turma.setPeriodo(uModel.getPeriodo());
         Turma.setDataInicio(uModel.getDataInicio());
         Turma.setDataFim(uModel.getDataFim());
-        Turma.setCurso(uModel.getCurso());
+        
+        Optional<CursoModel> cursoOptional = CursoRepository.findById(uModel.getCurso().getId());
+        uModel.setCurso(cursoOptional.get());
 
         TurmaRepository.save(Turma);
         return Turma;

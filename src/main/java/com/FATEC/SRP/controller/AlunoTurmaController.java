@@ -71,7 +71,19 @@ public class AlunoTurmaController implements IController<AlunoTurmaModel, String
      */
     @GetMapping("/{alunoTurmaId}")
     public ResponseEntity<ResponseBase<AlunoTurmaModel>> getById(@PathVariable String alunoTurmaId) {
-        AlunoTurmaModel alunoTurma = alunoTurmaService.read(alunoTurmaId);
+        AlunoTurmaModel alunoTurma = new AlunoTurmaModel();
+             
+        try {
+            alunoTurma = alunoTurmaService.read(alunoTurmaId);
+        } catch (Exception ex) {
+            ResponseBase<AlunoTurmaModel> noResult = ResponseBase.<AlunoTurmaModel>builder()
+                .error(false)
+                .info("OK")
+                .message(null)
+                .status(AppConstants.OK)
+                .build();
+            return ResponseEntity.ok(noResult);
+        }
 
         ResponseBase<AlunoTurmaModel> cBase = ResponseBase.<AlunoTurmaModel>builder()
             .error(false)

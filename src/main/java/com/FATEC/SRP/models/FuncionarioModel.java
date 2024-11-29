@@ -3,9 +3,13 @@ package com.fatec.srp.models;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
@@ -37,8 +41,17 @@ public class FuncionarioModel {
      * Usuário associado ao funcionário. Relacionamento de um para um com a classe `UsuarioModel`.
      */
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    @JsonIgnore
+    private Integer userId;
+
+    @JsonIgnore
+    private Integer cargoId;
+
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "nome_usuario", referencedColumnName = "nome_usuario")
+    @JoinColumn(name = "id_usuario", referencedColumnName = "id")
     private UsuarioModel usuario;
 
     /**
@@ -51,6 +64,7 @@ public class FuncionarioModel {
     /**
      * Lista de turmas associadas ao funcionário. Relacionamento de um para muitos com a classe `FuncionarioTurmaModel`.
      */
+    @JsonIgnore
     @OneToMany(mappedBy = "funcionario")
     private List<FuncionarioTurmaModel> funcionarioTurma;
 

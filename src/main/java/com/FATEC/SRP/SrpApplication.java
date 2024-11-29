@@ -3,8 +3,12 @@ package com.fatec.srp;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.lang.NonNull;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import jakarta.annotation.PostConstruct;
 
@@ -58,5 +62,27 @@ public class SrpApplication {
      */
     @PostConstruct
     public void init() {
+    }
+        /**
+     * Configuração de CORS para a aplicação.
+     * 
+     * Este método cria e retorna um bean do tipo {@link WebMvcConfigurer},
+     * permitindo configurar o mapeamento de CORS diretamente na classe principal.
+     * 
+     * Conceitos OOP utilizados:
+     * - **Injeção de Dependência**: O método registra um bean no contexto do Spring, permitindo que outros componentes usem a configuração de CORS.
+     * - **Abstração**: Encapsula a lógica de configuração de CORS em um método específico.
+     * - **Composição**: O bean criado é parte da composição geral da configuração do aplicativo.
+     * 
+     * @return Um bean configurado para gerenciar mapeamentos de CORS.
+     */
+    @Bean
+    public WebMvcConfigurer corsConfigurer() {
+        return new WebMvcConfigurer() {
+            @Override
+            public void addCorsMappings(@NonNull CorsRegistry registry) {
+                registry.addMapping("/**").allowedMethods("*");
+            }
+        };
     }
 }

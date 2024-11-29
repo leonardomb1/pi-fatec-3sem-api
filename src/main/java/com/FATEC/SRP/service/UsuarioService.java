@@ -70,6 +70,11 @@ public class UsuarioService implements IService<UsuarioModel, String> {
         return Usuario;
     }
 
+    public UsuarioModel readByName(String name) {
+        UsuarioModel usuario = UsuarioRepository.findByNomeUsuario(name);
+        return usuario;
+    }
+
     /**
      * Atualiza um registro de usuário existente.
      * 

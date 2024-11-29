@@ -37,7 +37,7 @@ public class CursoTrilhaModel {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     /**
      * Trilha associada ao curso. Relacionamento de muitos para um com a classe `TrilhaModel`.
